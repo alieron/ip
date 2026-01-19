@@ -61,6 +61,18 @@ public class Marvin {
         echo("added: " + desc);
     }
 
+    private void markTask(int taskNum) {
+        Task selectedTask = taskList[taskNum - 1];
+        selectedTask.mark(); // doesn't care about current state, just sets to true
+        echo("Nice! I've marked this task as done:\n  " + selectedTask);
+    }
+
+    private void unmarkTask(int taskNum) {
+        Task selectedTask = taskList[taskNum - 1];
+        selectedTask.unmark(); // doesn't care about current state, just sets to false
+        echo("OK, I've marked this task as not done yet:\n  " + selectedTask);
+    }
+
     private void parse() {
         Scanner scanner = new Scanner(System.in);
 
@@ -79,6 +91,14 @@ public class Marvin {
 
                 case "list":
                     printList();
+                    break;
+
+                case "mark":
+                    markTask(Integer.parseInt(argument));
+                    break;
+
+                case "unmark":
+                    unmarkTask(Integer.parseInt(argument));
                     break;
 
                 default:
