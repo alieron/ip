@@ -42,16 +42,20 @@ public class Marvin {
     }
 
     public void printList() {
-        StringBuilder sb = new StringBuilder();
+        if (index == 0) {
+            echo("There is nothing here. [sigh]");
+        } else {
+            StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < index; i++) {
-            sb.append(i + 1);
-            sb.append(". ");
-            sb.append(taskList[i]);
-            sb.append("\n");
+            for (int i = 0; i < index; i++) {
+                sb.append(i + 1);
+                sb.append(". ");
+                sb.append(taskList[i]);
+                sb.append("\n");
+            }
+
+            echo(sb.toString());
         }
-
-        echo(sb.toString());
     }
 
     public void parse() {
