@@ -5,7 +5,7 @@ public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
 
     private int index = 0;
-    private String[] taskList = new String[100];
+    private Task[] taskList = new Task[100];
 
     private void greet() {
         String logo = """
@@ -47,18 +47,18 @@ public class Marvin {
 
             for (int i = 0; i < index; i++) {
                 sb.append(i + 1);
-                sb.append(". ");
+                sb.append(".");
                 sb.append(taskList[i]);
                 if (i < index - 1) sb.append("\n");
             }
 
-            echo(sb.toString());
+            echo("Here are the tasks in your list:\n" + sb.toString());
         }
     }
 
-    private void addTask(String task) {
-        taskList[index++] = task;
-        echo("added: " + task);
+    private void addTask(String desc) {
+        taskList[index++] = new Task(desc);
+        echo("added: " + desc);
     }
 
     private void parse() {
