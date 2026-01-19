@@ -43,8 +43,7 @@ public class Marvin {
 
     private void addTask(Task task) {
         taskList.addTask(task);
-        echo("Task added.\n"
-                + "Another tedious thing for you to do.\n  "
+        echo("Another tedious thing for you to do.\n  adding: "
                 + task
                 + "\nYou have " + taskList.numTasks() + " tasks left."
         );
@@ -52,8 +51,7 @@ public class Marvin {
 
     private void deleteTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.deleteTask(taskNum);
-        echo("Task deleted.\n"
-                + "One less thing to occupy this miserable existence.\n  "
+        echo("One less thing to occupy this miserable existence.\n  deleting: "
                 + selectedTask
                 + "\nYou have " + taskList.numTasks() + " tasks left."
         );
@@ -61,16 +59,14 @@ public class Marvin {
 
     private void markTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.markTask(taskNum);
-        echo("That task is now marked as done.\n"
-                + "Progress, I suppose.\n  "
+        echo("Progress, I suppose.\n  marked: "
                 + selectedTask
         );
     }
 
     private void unmarkTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.unmarkTask(taskNum);
-        echo("The task is now marked as not done.\n"
-                + "Back to square one...\n  "
+        echo("Back to square one...\n  unmarked: "
                 + selectedTask);
     }
 
