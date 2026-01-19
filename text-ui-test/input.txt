@@ -1,9 +1,14 @@
+todo
 todo read book
+deadline return book
+deadline /by Sunday
 deadline return book /by Sunday
-buy bread
+event project meeting
+event project meeting /from Mon 2pm
+event /from Mon 2pm /to 4pm
+event project meeting /from Mon 2pm /to 4pm
 list
 mark 2
-event project meeting /from Mon 2pm /to 4pm
 list
 unmark 2
 list

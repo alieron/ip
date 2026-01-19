@@ -14,9 +14,18 @@ Anyways, what do you want?
 Not that it matters...
 ____________________________________________________________
 ____________________________________________________________
+A todo without a description is rather pointless.
+____________________________________________________________
+____________________________________________________________
 Added:
   [T][ ] read book
 You have 1 tasks left.
+____________________________________________________________
+____________________________________________________________
+Deadlines tend to require a deadline. Try using /by.
+____________________________________________________________
+____________________________________________________________
+A deadline for nothing in particular is deeply confusing.
 ____________________________________________________________
 ____________________________________________________________
 Added:
@@ -24,13 +33,13 @@ Added:
 You have 2 tasks left.
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks in your list:
-1.[T][ ] read book
-2.[D][ ] return book (by: Sunday)
+An event should probably start at some point. Try /from.
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
-  [D][X] return book (by: Sunday)
+Events usually end. Try specifying /to.
+____________________________________________________________
+____________________________________________________________
+An event with missing details is... incomplete.
 ____________________________________________________________
 ____________________________________________________________
 Added:
@@ -38,17 +47,28 @@ Added:
 You have 3 tasks left.
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks in your list:
+Here are your current tasks:
+1.[T][ ] read book
+2.[D][ ] return book (by: Sunday)
+3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+____________________________________________________________
+____________________________________________________________
+That task is now marked as done.
+Progress, I suppose.
+  [D][X] return book (by: Sunday)
+____________________________________________________________
+____________________________________________________________
+Here are your current tasks:
 1.[T][ ] read book
 2.[D][X] return book (by: Sunday)
 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+The task is now marked as not done.Back to square one...
   [D][ ] return book (by: Sunday)
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks in your list:
+Here are your current tasks:
 1.[T][ ] read book
 2.[D][ ] return book (by: Sunday)
 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
