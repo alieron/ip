@@ -28,11 +28,9 @@ public class Marvin {
         );
     }
 
-        System.out.println("Goodbye.\n"
-                + "Thank you for wasting my time.\n"
-                + SEPARATOR
     private void exit() {
-        );
+        echo("Goodbye.\n"
+                + "Thank you for wasting my time.");
     }
 
     private void echo(String out) {
@@ -51,7 +49,7 @@ public class Marvin {
                 sb.append(i + 1);
                 sb.append(". ");
                 sb.append(taskList[i]);
-                sb.append("\n");
+                if (i < index - 1) sb.append("\n");
             }
 
             echo(sb.toString());
@@ -59,6 +57,10 @@ public class Marvin {
     }
 
     private void addTask(String task) {
+        taskList[index++] = task;
+        echo("added: " + task);
+    }
+
     private void parse() {
         Scanner scanner = new Scanner(System.in);
 
@@ -75,8 +77,8 @@ public class Marvin {
                     break;
 
                 default:
-                    // echo if command is not matched
-                    echo(input);
+                    // add if command is not matched
+                    addTask(input);
             }
         }
     }
