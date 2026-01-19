@@ -52,7 +52,7 @@ public class Marvin {
                 if (i < index - 1) sb.append("\n");
             }
 
-            echo("Here are the tasks in your list:\n" + sb.toString());
+            echo("Here are your current tasks:\n" + sb.toString());
         }
     }
 
@@ -64,13 +64,18 @@ public class Marvin {
     private void markTask(int taskNum) {
         Task selectedTask = taskList[taskNum - 1];
         selectedTask.mark(); // doesn't care about current state, just sets to true
-        echo("Nice! I've marked this task as done:\n  " + selectedTask);
+        echo("That task is now marked as done.\n"
+                + "Progress, I suppose.\n  "
+                + selectedTask
+        );
     }
 
     private void unmarkTask(int taskNum) {
         Task selectedTask = taskList[taskNum - 1];
         selectedTask.unmark(); // doesn't care about current state, just sets to false
-        echo("OK, I've marked this task as not done yet:\n  " + selectedTask);
+        echo("The task is now marked as not done."
+                + "Back to square one...\n  "
+                + selectedTask);
     }
 
     private void parse(String input) throws MarvinException {
@@ -138,7 +143,7 @@ public class Marvin {
                 String from = toSplit[0].trim();
                 String to = toSplit[1].trim();
                 if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
-                    throw new MarvinException("An event with missing details is… incomplete.");
+                    throw new MarvinException("An event with missing details is... incomplete.");
                 }
 
                 addTask(new Event(desc, from, to));
