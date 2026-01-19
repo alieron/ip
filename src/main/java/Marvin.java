@@ -63,7 +63,7 @@ public class Marvin {
             switch (input) {
                 case "bye":
                     exit();
-                    break;
+                    return;
 
                 case "list":
                     printList();
