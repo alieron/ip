@@ -19,7 +19,14 @@ public class Marvin {
         );
     }
 
+    public static void exit() {
+        System.out.println("Bye. Hope to see you again soon!\n"
+                + "____________________________________________________________"
+        );
+    }
+
     public static void main(String[] args) {
         greet();
+        exit();
     }
 }
