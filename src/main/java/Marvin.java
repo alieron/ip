@@ -7,7 +7,7 @@ public class Marvin {
     private int index = 0;
     private String[] taskList = new String[100];
 
-    public void greet() {
+    private void greet() {
         String logo = """
                  __  __
                 |  \\/  |                 (_)
@@ -28,20 +28,20 @@ public class Marvin {
         );
     }
 
-    public void exit() {
         System.out.println("Goodbye.\n"
                 + "Thank you for wasting my time.\n"
                 + SEPARATOR
+    private void exit() {
         );
     }
 
-    public void echo(String out) {
+    private void echo(String out) {
         System.out.println(SEPARATOR);
         System.out.println(out);
         System.out.println(SEPARATOR);
     }
 
-    public void printList() {
+    private void printList() {
         if (index == 0) {
             echo("There is nothing here. [sigh]");
         } else {
@@ -58,7 +58,8 @@ public class Marvin {
         }
     }
 
-    public void parse() {
+    private void addTask(String task) {
+    private void parse() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
