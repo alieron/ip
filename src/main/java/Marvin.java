@@ -31,12 +31,17 @@ public class Marvin {
         );
     }
 
+    public void echo(String out) {
+        System.out.println(SEPARATOR);
+        System.out.println(out);
+        System.out.println(SEPARATOR);
+    }
+
     public void parse() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             String input = scanner.nextLine();
-            System.out.println(SEPARATOR);
 
             switch (input) {
                 case "bye":
@@ -45,10 +50,7 @@ public class Marvin {
 
                 default:
                     // echo if command is not matched
-                    System.out.println(input
-                            + "\n"
-                            + SEPARATOR
-                    );
+                    echo(input);
             }
         }
     }
