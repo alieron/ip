@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
 
-    public static void greet() {
+    public void greet() {
         String logo = """
                  __  __
                 |  \\/  |                 (_)
@@ -24,14 +24,14 @@ public class Marvin {
         );
     }
 
-    public static void exit() {
+    public void exit() {
         System.out.println("Goodbye.\n"
                 + "Thank you for wasting my time.\n"
                 + SEPARATOR
         );
     }
 
-    public static void parse() {
+    public void parse() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -54,7 +54,8 @@ public class Marvin {
     }
 
     public static void main(String[] args) {
-        greet();
-        parse();
+        Marvin chatbot = new Marvin();
+        chatbot.greet();
+        chatbot.parse();
     }
 }
