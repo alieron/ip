@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.lang.StringBuilder;
 
 public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
@@ -45,7 +44,7 @@ public class Marvin {
     private void addTask(Task task) {
         taskList.addTask(task);
         echo("Task added.\n"
-                + "Another tedious thing for you to do."
+                + "Another tedious thing for you to do.\n  "
                 + task
                 + "\nYou have " + taskList.numTasks() + " tasks left."
         );
@@ -54,7 +53,7 @@ public class Marvin {
     private void deleteTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.deleteTask(taskNum);
         echo("Task deleted.\n"
-                + "One less thing to occupy this miserable existence."
+                + "One less thing to occupy this miserable existence.\n  "
                 + selectedTask
                 + "\nYou have " + taskList.numTasks() + " tasks left."
         );
@@ -70,7 +69,7 @@ public class Marvin {
 
     private void unmarkTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.unmarkTask(taskNum);
-        echo("The task is now marked as not done."
+        echo("The task is now marked as not done.\n"
                 + "Back to square one...\n  "
                 + selectedTask);
     }
@@ -98,6 +97,10 @@ public class Marvin {
 
             case "unmark":
                 unmarkTask(Integer.parseInt(args));
+                break;
+
+            case "delete":
+                deleteTask(Integer.parseInt(args));
                 break;
 
             case "todo":
