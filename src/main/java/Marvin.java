@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Marvin {
     public static void greet() {
         String logo = """
@@ -27,8 +29,27 @@ public class Marvin {
         );
     }
 
+    public static void parse() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            String input = scanner.nextLine();
+            System.out.println("____________________________________________________________");
+
+            if (input.equals("bye")) {
+                exit();
+                break;
+            } else {
+                // echo if command is not matched
+                System.out.println(input
+                        + "\n____________________________________________________________"
+                );
+            }
+        }
+    }
+
     public static void main(String[] args) {
         greet();
-        exit();
+        parse();
     }
 }
