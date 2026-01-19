@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Marvin {
+    private static final String SEPARATOR = "____________________________________________________________";
+
     public static void greet() {
         String logo = """
                  __  __
@@ -18,14 +20,14 @@ public class Marvin {
                 + "It’s all terribly depressing.\n"
                 + "\nAnyways, what do you want?\n"
                 + "Not that it matters...\n"
-                + "____________________________________________________________"
+                + SEPARATOR
         );
     }
 
     public static void exit() {
         System.out.println("Goodbye.\n"
                 + "Thank you for wasting my time.\n"
-                + "____________________________________________________________"
+                + SEPARATOR
         );
     }
 
@@ -34,7 +36,7 @@ public class Marvin {
 
         while (true) {
             String input = scanner.nextLine();
-            System.out.println("____________________________________________________________");
+            System.out.println(SEPARATOR);
 
             if (input.equals("bye")) {
                 exit();
@@ -42,7 +44,8 @@ public class Marvin {
             } else {
                 // echo if command is not matched
                 System.out.println(input
-                        + "\n____________________________________________________________"
+                        + "\n"
+                        + SEPARATOR
                 );
             }
         }
