@@ -38,15 +38,17 @@ public class Marvin {
             String input = scanner.nextLine();
             System.out.println(SEPARATOR);
 
-            if (input.equals("bye")) {
-                exit();
-                break;
-            } else {
-                // echo if command is not matched
-                System.out.println(input
-                        + "\n"
-                        + SEPARATOR
-                );
+            switch (input) {
+                case "bye":
+                    exit();
+                    break;
+
+                default:
+                    // echo if command is not matched
+                    System.out.println(input
+                            + "\n"
+                            + SEPARATOR
+                    );
             }
         }
     }
