@@ -14,13 +14,15 @@ public class Marvin {
                 + "\nI have a brain the size of a planet,\n"
                 + "and here I am, greeting users.\n"
                 + "It’s all terribly depressing.\n"
-                + "\nAnyways, what can I do for you?\n"
+                + "\nAnyways, what do you want?\n"
+                + "Not that it matters...\n"
                 + "____________________________________________________________"
         );
     }
 
     public static void exit() {
-        System.out.println("Bye. Hope to see you again soon!\n"
+        System.out.println("Goodbye.\n"
+                + "Thank you for wasting my time.\n"
                 + "____________________________________________________________"
         );
     }
