@@ -73,95 +73,95 @@ public class Marvin {
         echo("OK, I've marked this task as not done yet:\n  " + selectedTask);
     }
 
-    private void parse() throws MarvinException {
-        Scanner scanner = new Scanner(System.in);
+    private void parse(String input) throws MarvinException {
+        String[] command = input.trim().split("\\s+", 2);
 
-        while (true) {
-            String input = scanner.nextLine();
+        String commandWord = command[0];
+        String args = command.length > 1 ? command[1] : ""; // only handles one argument
 
-            String[] command = input.trim().split("\\s+", 2);
+        String desc;
 
-            String commandWord = command[0];
-            String args = command.length > 1 ? command[1] : ""; // only handles one argument
+        switch (commandWord) {
+            case "bye":
+                exit();
+                System.exit(0);
 
-            String desc;
+            case "list":
+                printList();
+                break;
 
-            switch (commandWord) {
-                case "bye":
-                    exit();
-                    return;
+            case "mark":
+                markTask(Integer.parseInt(args));
+                break;
 
-                case "list":
-                    printList();
-                    break;
+            case "unmark":
+                unmarkTask(Integer.parseInt(args));
+                break;
 
-                case "mark":
-                    markTask(Integer.parseInt(args));
-                    break;
+            case "todo":
+                if (args.isBlank()) {
+                    throw new MarvinException("A todo without a description is rather pointless.");
+                }
 
-                case "unmark":
-                    unmarkTask(Integer.parseInt(args));
-                    break;
+                addTask(new Todo(args));
+                break;
 
-                case "todo":
-                    if (args.isBlank()) {
-                        throw new MarvinException("A todo without a description is rather pointless.");
-                    }
+            case "deadline":
+                String[] split = args.split("/by", 2);
+                if (split.length < 2) {
+                    throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
+                }
 
-                    addTask(new Todo(args));
-                    break;
+                desc = split[0].trim();
 
-                case "deadline":
-                    String[] split = args.split("/by", 2);
-                    if (split.length < 2) {
-                        throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
-                    }
+                String by = split[1].trim();
+                if (desc.isEmpty() || by.isEmpty()) {
+                    throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
+                }
 
-                    desc = split[0].trim();
+                addTask(new Deadline(desc, by));
+                break;
 
-                    String by = split[1].trim();
-                    if (desc.isEmpty() || by.isEmpty()) {
-                        throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
-                    }
+            case "event":
+                String[] fromSplit = args.split("/from", 2);
+                if (fromSplit.length < 2) {
+                    throw new MarvinException("An event should probably start at some point. Try /from.");
+                }
 
-                    addTask(new Deadline(desc, by));
-                    break;
+                desc = fromSplit[0].trim();
 
-                case "event":
-                    String[] fromSplit = args.split("/from", 2);
-                    if (fromSplit.length < 2) {
-                        throw new MarvinException("An event should probably start at some point. Try /from.");
-                    }
+                String[] toSplit = fromSplit[1].split("/to", 2);
+                if (toSplit.length < 2) {
+                    throw new MarvinException("Events usually end. Try specifying /to.");
+                }
 
-                    desc = fromSplit[0].trim();
+                String from = toSplit[0].trim();
+                String to = toSplit[1].trim();
+                if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
+                    throw new MarvinException("An event with missing details is… incomplete.");
+                }
 
-                    String[] toSplit = fromSplit[1].split("/to", 2);
-                    if (toSplit.length < 2) {
-                        throw new MarvinException("Events usually end. Try specifying /to.");
-                    }
+                addTask(new Event(desc, from, to));
+                break;
 
-                    String from = toSplit[0].trim();
-                    String to = toSplit[1].trim();
-                    if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
-                        throw new MarvinException("An event with missing details is… incomplete.");
-                    }
-
-                    addTask(new Event(desc, from, to));
-                    break;
-
-                default:
-                    throw new MarvinException("I don’t know what you want me to do.");
-            }
+            default:
+                throw new MarvinException("I don’t know what you want me to do.");
         }
     }
 
     public static void main(String[] args) {
         Marvin chatbot = new Marvin();
         chatbot.greet();
-        try {
-            chatbot.parse();
-        } catch (MarvinException e) {
-            chatbot.echo(e.getMessage());
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) { // ignore infinite loop warning, parse can exit with the "bye" command
+            try {
+                String input = scanner.nextLine();
+                chatbot.parse(input);
+            } catch (MarvinException e) {
+                chatbot.echo(e.getMessage());
+            }
         }
     }
 }
