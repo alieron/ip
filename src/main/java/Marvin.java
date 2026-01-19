@@ -73,7 +73,7 @@ public class Marvin {
         echo("OK, I've marked this task as not done yet:\n  " + selectedTask);
     }
 
-    private void parse() {
+    private void parse() throws MarvinException {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -104,29 +104,53 @@ public class Marvin {
                     break;
 
                 case "todo":
+                    if (args.isBlank()) {
+                        throw new MarvinException("A todo without a description is rather pointless.");
+                    }
+
                     addTask(new Todo(args));
                     break;
 
                 case "deadline":
                     String[] split = args.split("/by", 2);
+                    if (split.length < 2) {
+                        throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
+                    }
+
                     desc = split[0].trim();
-                    String by = split.length > 1 ? split[1].trim() : "";
+
+                    String by = split[1].trim();
+                    if (desc.isEmpty() || by.isEmpty()) {
+                        throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
+                    }
+
                     addTask(new Deadline(desc, by));
                     break;
 
                 case "event":
                     String[] fromSplit = args.split("/from", 2);
+                    if (fromSplit.length < 2) {
+                        throw new MarvinException("An event should probably start at some point. Try /from.");
+                    }
+
                     desc = fromSplit[0].trim();
 
                     String[] toSplit = fromSplit[1].split("/to", 2);
+                    if (toSplit.length < 2) {
+                        throw new MarvinException("Events usually end. Try specifying /to.");
+                    }
+
                     String from = toSplit[0].trim();
                     String to = toSplit[1].trim();
+                    if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
+                        throw new MarvinException("An event with missing details is… incomplete.");
+                    }
+
                     addTask(new Event(desc, from, to));
                     break;
 
                 default:
-                    // add if command is not matched
-//                    addTask(new Task(commandWord));
+                    throw new MarvinException("I don’t know what you want me to do.");
             }
         }
     }
@@ -134,6 +158,10 @@ public class Marvin {
     public static void main(String[] args) {
         Marvin chatbot = new Marvin();
         chatbot.greet();
-        chatbot.parse();
+        try {
+            chatbot.parse();
+        } catch (MarvinException e) {
+            chatbot.echo(e.getMessage());
+        }
     }
 }
