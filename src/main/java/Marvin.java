@@ -73,33 +73,33 @@ public class Marvin {
     private void parse(String input) throws MarvinException {
         String[] command = input.trim().split("\\s+", 2);
 
-        String commandWord = command[0];
+        CommandType commandWord = CommandType.from(command[0]);
         String args = command.length > 1 ? command[1] : ""; // only handles one argument
 
         String desc;
 
         switch (commandWord) {
-            case "bye":
+            case BYE:
                 exit();
                 System.exit(0);
 
-            case "list":
+            case LIST:
                 printList();
                 break;
 
-            case "mark":
+            case MARK:
                 markTask(Integer.parseInt(args));
                 break;
 
-            case "unmark":
+            case UNMARK:
                 unmarkTask(Integer.parseInt(args));
                 break;
 
-            case "delete":
+            case DELETE:
                 deleteTask(Integer.parseInt(args));
                 break;
 
-            case "todo":
+            case TODO:
                 if (args.isBlank()) {
                     throw new MarvinException("A todo without a description is rather pointless.");
                 }
@@ -107,7 +107,7 @@ public class Marvin {
                 addTask(new Todo(args));
                 break;
 
-            case "deadline":
+            case DEADLINE:
                 String[] split = args.split("/by", 2);
                 if (split.length < 2) {
                     throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
@@ -123,7 +123,7 @@ public class Marvin {
                 addTask(new Deadline(desc, by));
                 break;
 
-            case "event":
+            case EVENT:
                 String[] fromSplit = args.split("/from", 2);
                 if (fromSplit.length < 2) {
                     throw new MarvinException("An event should probably start at some point. Try /from.");
