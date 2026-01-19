@@ -67,7 +67,12 @@ public class Marvin {
         while (true) {
             String input = scanner.nextLine();
 
-            switch (input) {
+            String[] command = input.trim().split("\\s+", 2);
+
+            String commandWord = command[0];
+            String argument = command.length > 1 ? command[1] : ""; // only handles one argument
+
+            switch (commandWord) {
                 case "bye":
                     exit();
                     return;
