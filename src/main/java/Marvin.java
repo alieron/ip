@@ -1,7 +1,11 @@
 import java.util.Scanner;
+import java.lang.StringBuilder;
 
 public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
+
+    private int index = 0;
+    private String[] taskList = new String[100];
 
     public void greet() {
         String logo = """
@@ -37,6 +41,19 @@ public class Marvin {
         System.out.println(SEPARATOR);
     }
 
+    public void printList() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < index; i++) {
+            sb.append(i + 1);
+            sb.append(". ");
+            sb.append(taskList[i]);
+            sb.append("\n");
+        }
+
+        echo(sb.toString());
+    }
+
     public void parse() {
         Scanner scanner = new Scanner(System.in);
 
@@ -46,6 +63,10 @@ public class Marvin {
             switch (input) {
                 case "bye":
                     exit();
+                    break;
+
+                case "list":
+                    printList();
                     break;
 
                 default:
