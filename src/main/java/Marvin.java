@@ -4,8 +4,7 @@ import java.lang.StringBuilder;
 public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
 
-    private int index = 0;
-    private Task[] taskList = new Task[100];
+    private TaskList taskList = new TaskList();
 
     private void greet() {
         String logo = """
@@ -40,39 +39,37 @@ public class Marvin {
     }
 
     private void printList() {
-        if (index == 0) {
-            echo("There is nothing here. [sigh]");
-        } else {
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < index; i++) {
-                sb.append(i + 1);
-                sb.append(".");
-                sb.append(taskList[i]);
-                if (i < index - 1) sb.append("\n");
-            }
-
-            echo("Here are your current tasks:\n" + sb.toString());
-        }
+        echo(taskList.toString());
     }
 
     private void addTask(Task task) {
-        taskList[index++] = task;
-        echo("Added:\n  " + task + "\nYou have " + index + " tasks left.");
+        taskList.addTask(task);
+        echo("Task added.\n"
+                + "Another tedious thing for you to do."
+                + task
+                + "\nYou have " + taskList.numTasks() + " tasks left."
+        );
     }
 
-    private void markTask(int taskNum) {
-        Task selectedTask = taskList[taskNum - 1];
-        selectedTask.mark(); // doesn't care about current state, just sets to true
+    private void deleteTask(int taskNum) throws MarvinException {
+        Task selectedTask = taskList.deleteTask(taskNum);
+        echo("Task deleted.\n"
+                + "One less thing to occupy this miserable existence."
+                + selectedTask
+                + "\nYou have " + taskList.numTasks() + " tasks left."
+        );
+    }
+
+    private void markTask(int taskNum) throws MarvinException {
+        Task selectedTask = taskList.markTask(taskNum);
         echo("That task is now marked as done.\n"
                 + "Progress, I suppose.\n  "
                 + selectedTask
         );
     }
 
-    private void unmarkTask(int taskNum) {
-        Task selectedTask = taskList[taskNum - 1];
-        selectedTask.unmark(); // doesn't care about current state, just sets to false
+    private void unmarkTask(int taskNum) throws MarvinException {
+        Task selectedTask = taskList.unmarkTask(taskNum);
         echo("The task is now marked as not done."
                 + "Back to square one...\n  "
                 + selectedTask);
