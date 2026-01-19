@@ -56,9 +56,9 @@ public class Marvin {
         }
     }
 
-    private void addTask(String desc) {
-        taskList[index++] = new Task(desc);
-        echo("added: " + desc);
+    private void addTask(Task task) {
+        taskList[index++] = task;
+        echo("Added:\n  " + task + "\nYou have " + index + " tasks left.");
     }
 
     private void markTask(int taskNum) {
@@ -82,7 +82,9 @@ public class Marvin {
             String[] command = input.trim().split("\\s+", 2);
 
             String commandWord = command[0];
-            String argument = command.length > 1 ? command[1] : ""; // only handles one argument
+            String args = command.length > 1 ? command[1] : ""; // only handles one argument
+
+            String desc;
 
             switch (commandWord) {
                 case "bye":
@@ -94,16 +96,37 @@ public class Marvin {
                     break;
 
                 case "mark":
-                    markTask(Integer.parseInt(argument));
+                    markTask(Integer.parseInt(args));
                     break;
 
                 case "unmark":
-                    unmarkTask(Integer.parseInt(argument));
+                    unmarkTask(Integer.parseInt(args));
+                    break;
+
+                case "todo":
+                    addTask(new Todo(args));
+                    break;
+
+                case "deadline":
+                    String[] split = args.split("/by", 2);
+                    desc = split[0].trim();
+                    String by = split.length > 1 ? split[1].trim() : "";
+                    addTask(new Deadline(desc, by));
+                    break;
+
+                case "event":
+                    String[] fromSplit = args.split("/from", 2);
+                    desc = fromSplit[0].trim();
+
+                    String[] toSplit = fromSplit[1].split("/to", 2);
+                    String from = toSplit[0].trim();
+                    String to = toSplit[1].trim();
+                    addTask(new Event(desc, from, to));
                     break;
 
                 default:
                     // add if command is not matched
-                    addTask(input);
+//                    addTask(new Task(commandWord));
             }
         }
     }
