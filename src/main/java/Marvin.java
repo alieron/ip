@@ -1,11 +1,18 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Marvin {
     private static final String SEPARATOR = "____________________________________________________________";
 
     private TaskList taskList = new TaskList();
+    private Storage storage = new Storage();
 
-    private void greet() {
+    private void start() {
+        List<Task> loaded = storage.load();
+        for (Task t : loaded) {
+            taskList.addTask(t);
+        }
+
         String logo = """
                  __  __
                 |  \\/  |                 (_)
@@ -26,6 +33,19 @@ public class Marvin {
         );
     }
 
+    private void awaitInput() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) { // ignore infinite loop warning, parse can exit with the "bye" command
+            try {
+                String input = scanner.nextLine();
+                parse(input);
+            } catch (MarvinException e) {
+                echo(e.getMessage());
+            }
+        }
+    }
+
     private void exit() {
         echo("Goodbye.\n"
                 + "Thank you for wasting my time.");
@@ -43,6 +63,7 @@ public class Marvin {
 
     private void addTask(Task task) {
         taskList.addTask(task);
+        storage.save(taskList);
         echo("Another tedious thing for you to do.\n  adding: "
                 + task
                 + "\nYou have " + taskList.numTasks() + " tasks left."
@@ -51,6 +72,7 @@ public class Marvin {
 
     private void deleteTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.deleteTask(taskNum);
+        storage.save(taskList);
         echo("One less thing to occupy this miserable existence.\n  deleting: "
                 + selectedTask
                 + "\nYou have " + taskList.numTasks() + " tasks left."
@@ -59,6 +81,7 @@ public class Marvin {
 
     private void markTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.markTask(taskNum);
+        storage.save(taskList);
         echo("Progress, I suppose.\n  marked: "
                 + selectedTask
         );
@@ -66,6 +89,7 @@ public class Marvin {
 
     private void unmarkTask(int taskNum) throws MarvinException {
         Task selectedTask = taskList.unmarkTask(taskNum);
+        storage.save(taskList);
         echo("Back to square one...\n  unmarked: "
                 + selectedTask);
     }
@@ -152,17 +176,7 @@ public class Marvin {
 
     public static void main(String[] args) {
         Marvin chatbot = new Marvin();
-        chatbot.greet();
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) { // ignore infinite loop warning, parse can exit with the "bye" command
-            try {
-                String input = scanner.nextLine();
-                chatbot.parse(input);
-            } catch (MarvinException e) {
-                chatbot.echo(e.getMessage());
-            }
-        }
+        chatbot.start();
+        chatbot.awaitInput();
     }
 }
