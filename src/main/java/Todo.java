@@ -12,4 +12,15 @@ public class Todo extends Task {
     public String toStorageString() {
         return "T | " + super.toStorageString();
     }
+
+    public static Todo fromStorageParts(String[] parts, boolean isComplete) {
+        if (parts.length < 3) {
+            throw new IllegalArgumentException("Invalid storage parts for Todo: " + String.join(" | ", parts));
+        }
+        Todo todo = new Todo(parts[2]);
+        if (isComplete) {
+            todo.mark();
+        }
+        return todo;
+    }
 }

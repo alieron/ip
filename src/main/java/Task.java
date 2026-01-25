@@ -6,6 +6,27 @@ public abstract class Task implements Storable {
         this.desc = desc;
     }
 
+    /**
+     * Factory method to parse a storage line and return a Task.
+     * Format expected: TYPE | DONE(0/1) | description [| extra...]
+     */
+    public static Task fromStorageString(String line) {
+        String[] parts = line.split("\\s*\\|\\s*");
+        if (parts.length < 3) {
+            throw new IllegalArgumentException("Invalid storage line: " + line);
+        }
+        String type = parts[0];
+        String doneToken = parts[1];
+        boolean done = "1".equals(doneToken);
+
+        return switch (type) {
+            case "T" -> Todo.fromStorageParts(parts, done);
+            case "D" -> Deadline.fromStorageParts(parts, done);
+            case "E" -> Event.fromStorageParts(parts, done);
+            default -> throw new IllegalArgumentException("Unknown task type: " + type);
+        };
+    }
+
     @Override
     public String toString() {
         return (isComplete ? "[X] " : "[ ] ") + desc;
