@@ -1,4 +1,6 @@
-package marvin;
+package marvin.task;
+
+import marvin.Parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +26,7 @@ public class Deadline extends Task {
 
     public static Deadline fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 4) {
-            throw new IllegalArgumentException("Invalid storage parts for marvin.Deadline: " + String.join(" | ", parts));
+            throw new IllegalArgumentException("Invalid storage parts for marvin.task.Deadline: " + String.join(" | ", parts));
         }
         Deadline deadline = new Deadline(parts[2], parts[3]);
         if (isComplete) {

@@ -1,5 +1,7 @@
 package marvin;
 
+import marvin.task.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
