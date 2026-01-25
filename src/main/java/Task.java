@@ -1,4 +1,4 @@
-public class Task {
+public class Task implements Storable {
     private boolean isComplete = false; // task is incomplete by default
     private String desc;
 
@@ -17,5 +17,10 @@ public class Task {
 
     public void unmark() {
         this.isComplete = false;
+    }
+
+    @Override
+    public String toStorageString() {
+        return isComplete ? "1 | " : "0 | " + desc;
     }
 }
