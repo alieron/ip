@@ -15,7 +15,7 @@ public class Storage {
     //        this.filePath = Paths.get(relativePath);
     //    }
 
-    public List<Task> load() {
+    public List<Task> load() throws MarvinException {
         List<Task> tasks = new ArrayList<>();
         try {
             Path parent = filePath.getParent();
@@ -36,16 +36,16 @@ public class Storage {
                     Task t = Task.fromStorageString(line);
                     tasks.add(t);
                 } catch (Exception e) {
-                    System.err.println("Warning: skipping corrupted storage line " + (i + 1) + ": " + line);
+                    throw new MarvinException("Warning: skipping corrupted storage line " + (i + 1) + ": " + line);
                 }
             }
         } catch (IOException e) {
-            System.err.println("Failed to load storage: " + e.getMessage());
+            throw new MarvinException("Failed to load storage: " + e.getMessage());
         }
         return tasks;
     }
 
-    public void save(List<Task> tasks) {
+    public void save(List<Task> tasks) throws MarvinException {
         List<String> lines = new ArrayList<>();
         for (Task t : tasks) {
             lines.add(t.toStorageString());
@@ -57,12 +57,12 @@ public class Storage {
             }
             Files.write(filePath, lines);
         } catch (IOException e) {
-            System.err.println("Failed to save tasks: " + e.getMessage());
+            throw new MarvinException("Failed to save tasks: " + e.getMessage());
         }
     }
 
     // convenience overload so callers can pass marvin.TaskList directly
-    public void save(TaskList taskList) {
+    public void save(TaskList taskList) throws MarvinException {
         save(taskList.getTasks());
     }
 }
