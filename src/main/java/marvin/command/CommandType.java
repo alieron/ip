@@ -20,7 +20,9 @@ public enum CommandType {
         for (CommandType t : values()) MAP.put(t.word, t);
     }
 
-    CommandType(String word) { this.word = word; }
+    CommandType(String word) {
+        this.word = word;
+    }
 
     public static CommandType from(String w) {
         if (w == null) return null;
