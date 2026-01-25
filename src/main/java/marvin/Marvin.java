@@ -1,3 +1,10 @@
+package marvin;
+
+import marvin.task.Deadline;
+import marvin.task.Event;
+import marvin.task.Task;
+import marvin.task.Todo;
+
 import java.util.List;
 import java.util.Scanner;
 

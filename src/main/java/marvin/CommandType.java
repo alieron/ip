@@ -1,3 +1,5 @@
+package marvin;
+
 public enum CommandType {
     LIST("list"),
     MARK("mark"),

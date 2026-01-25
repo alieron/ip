@@ -1,3 +1,7 @@
+package marvin.task;
+
+import marvin.Storable;
+
 public abstract class Task implements Storable {
     protected boolean isComplete = false; // task is incomplete by default
     protected String desc;
@@ -7,7 +11,7 @@ public abstract class Task implements Storable {
     }
 
     /**
-     * Factory method to parse a storage line and return a Task.
+     * Factory method to parse a storage line and return a marvin.task.Task.
      * Format expected: TYPE | DONE(0/1) | description [| extra...]
      */
     public static Task fromStorageString(String line) {

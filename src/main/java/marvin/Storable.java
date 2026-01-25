@@ -1,3 +1,5 @@
+package marvin;
+
 public interface Storable {
     /**
      * Convert this instance to a single-line storage representation.

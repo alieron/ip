@@ -1,3 +1,7 @@
+package marvin.task;
+
+import marvin.Parser;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +27,7 @@ public class Event extends Task {
 
     public static Event fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 5) {
-            throw new IllegalArgumentException("Invalid storage parts for Event: " + String.join(" | ", parts));
+            throw new IllegalArgumentException("Invalid storage parts for marvin.task.Event: " + String.join(" | ", parts));
         }
         Event event = new Event(parts[2], parts[3], parts[4]);
         if (isComplete) {

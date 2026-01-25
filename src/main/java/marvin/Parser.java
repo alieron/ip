@@ -1,3 +1,5 @@
+package marvin;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
 /**
- * Parser class with static utility functions to parse strings into various types.
+ * marvin.Parser class with static utility functions to parse strings into various types.
  */
 public class Parser {
     public static LocalDate parseDate(String token) {
