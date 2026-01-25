@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private final Path filePath = Path.of("../data/tasks.txt");
+    private final Path filePath = Path.of("data/tasks.txt");
 
     //    public Storage(String relativePath) {
     //        this.filePath = Paths.get(relativePath);
