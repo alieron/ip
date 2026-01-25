@@ -14,12 +14,13 @@ public enum CommandType {
     EVENT("event"),
     EXIT("bye");
 
-    private final String word;
     private static final Map<String, CommandType> MAP = new HashMap<>();
 
     static {
         for (CommandType t : values()) MAP.put(t.word, t);
     }
+
+    private final String word;
 
     CommandType(String word) {
         this.word = word;

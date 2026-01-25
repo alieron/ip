@@ -22,6 +22,15 @@ public class Marvin {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args The input arguments
+     */
+    public static void main(String[] args) {
+        new Marvin().run();
+    }
+
     private void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -35,14 +44,5 @@ public class Marvin {
                 ui.show(e.getMessage());
             }
         }
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args The input arguments
-     */
-    public static void main(String[] args) {
-        new Marvin().run();
     }
 }

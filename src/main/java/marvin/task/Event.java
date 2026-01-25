@@ -14,17 +14,6 @@ public class Event extends Task {
         this.to = Parser.parseDate(to);
     }
 
-    @Override
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-        return "[E]" + super.toString() + " (from: " + from.format(formatter) + " to: " + to.format(formatter) + ")";
-    }
-
-    @Override
-    public String toStorageString() {
-        return "E | " + super.toStorageString() + " | " + from + " | " + to;
-    }
-
     public static Event fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 5) {
             throw new IllegalArgumentException("Invalid storage parts for marvin.task.Event: " + String.join(" | ", parts));
@@ -34,5 +23,16 @@ public class Event extends Task {
             event.mark();
         }
         return event;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return "[E]" + super.toString() + " (from: " + from.format(formatter) + " to: " + to.format(formatter) + ")";
+    }
+
+    @Override
+    public String toStorageString() {
+        return "E | " + super.toStorageString() + " | " + from + " | " + to;
     }
 }

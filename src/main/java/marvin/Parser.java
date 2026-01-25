@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
 /**
- * Provides static utility methods to parse strings into various types.
+ * Parser class with static utility functions to parse strings into various types.
  */
 public class Parser {
     /**
@@ -37,69 +37,69 @@ public class Parser {
         String desc;
 
         switch (commandWord) {
-            case EXIT:
-                return new ExitCommand();
+        case EXIT:
+            return new ExitCommand();
 
-            case LIST:
-                return new ListCommand();
+        case LIST:
+            return new ListCommand();
 
-            case MARK:
-                return new MarkCommand(Integer.parseInt(args));
+        case MARK:
+            return new MarkCommand(Integer.parseInt(args));
 
-            case UNMARK:
-                return new UnmarkCommand(Integer.parseInt(args));
+        case UNMARK:
+            return new UnmarkCommand(Integer.parseInt(args));
 
-            case DELETE:
-                return new DeleteCommand(Integer.parseInt(args));
+        case DELETE:
+            return new DeleteCommand(Integer.parseInt(args));
 
-            case FIND:
-                return new FindCommand(args);
+        case FIND:
+            return new FindCommand(args);
 
-            case TODO:
-                if (args.isBlank()) {
-                    throw new MarvinException("A todo without a description is rather pointless.");
-                }
+        case TODO:
+            if (args.isBlank()) {
+                throw new MarvinException("A todo without a description is rather pointless.");
+            }
 
-                return new AddTaskCommand(new Todo(args));
+            return new AddTaskCommand(new Todo(args));
 
-            case DEADLINE:
-                String[] split = args.split("/by", 2);
-                if (split.length < 2) {
-                    throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
-                }
+        case DEADLINE:
+            String[] split = args.split("/by", 2);
+            if (split.length < 2) {
+                throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
+            }
 
-                desc = split[0].trim();
+            desc = split[0].trim();
 
-                String by = split[1].trim();
-                if (desc.isEmpty() || by.isEmpty()) {
-                    throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
-                }
+            String by = split[1].trim();
+            if (desc.isEmpty() || by.isEmpty()) {
+                throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
+            }
 
-                return new AddTaskCommand(new Deadline(desc, by));
+            return new AddTaskCommand(new Deadline(desc, by));
 
-            case EVENT:
-                String[] fromSplit = args.split("/from", 2);
-                if (fromSplit.length < 2) {
-                    throw new MarvinException("An event should probably start at some point. Try /from.");
-                }
+        case EVENT:
+            String[] fromSplit = args.split("/from", 2);
+            if (fromSplit.length < 2) {
+                throw new MarvinException("An event should probably start at some point. Try /from.");
+            }
 
-                desc = fromSplit[0].trim();
+            desc = fromSplit[0].trim();
 
-                String[] toSplit = fromSplit[1].split("/to", 2);
-                if (toSplit.length < 2) {
-                    throw new MarvinException("Events usually end. Try specifying /to.");
-                }
+            String[] toSplit = fromSplit[1].split("/to", 2);
+            if (toSplit.length < 2) {
+                throw new MarvinException("Events usually end. Try specifying /to.");
+            }
 
-                String from = toSplit[0].trim();
-                String to = toSplit[1].trim();
-                if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
-                    throw new MarvinException("An event with missing details is... incomplete.");
-                }
+            String from = toSplit[0].trim();
+            String to = toSplit[1].trim();
+            if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
+                throw new MarvinException("An event with missing details is... incomplete.");
+            }
 
-                return new AddTaskCommand(new Event(desc, from, to));
+            return new AddTaskCommand(new Event(desc, from, to));
 
-            default:
-                throw new MarvinException("I don’t know what you want me to do.");
+        default:
+            throw new MarvinException("I don’t know what you want me to do.");
         }
     }
 
