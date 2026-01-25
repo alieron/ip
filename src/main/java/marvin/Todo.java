@@ -1,3 +1,5 @@
+package marvin;
+
 public class Todo extends Task {
     public Todo(String desc) {
         super(desc);
@@ -15,7 +17,7 @@ public class Todo extends Task {
 
     public static Todo fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 3) {
-            throw new IllegalArgumentException("Invalid storage parts for Todo: " + String.join(" | ", parts));
+            throw new IllegalArgumentException("Invalid storage parts for marvin.Todo: " + String.join(" | ", parts));
         }
         Todo todo = new Todo(parts[2]);
         if (isComplete) {

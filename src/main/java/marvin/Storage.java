@@ -1,3 +1,5 @@
+package marvin;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +9,7 @@ import java.util.List;
 public class Storage {
     private final Path filePath = Path.of("data/tasks.txt");
 
-    //    public Storage(String relativePath) {
+    //    public marvin.Storage(String relativePath) {
     //        this.filePath = Paths.get(relativePath);
     //    }
 
@@ -57,7 +59,7 @@ public class Storage {
         }
     }
 
-    // convenience overload so callers can pass TaskList directly
+    // convenience overload so callers can pass marvin.TaskList directly
     public void save(TaskList taskList) {
         save(taskList.getTasks());
     }
