@@ -1,8 +1,8 @@
-public class Task implements Storable {
-    private boolean isComplete = false; // task is incomplete by default
-    private String desc;
+public abstract class Task implements Storable {
+    protected boolean isComplete = false; // task is incomplete by default
+    protected String desc;
 
-    public Task(String desc) {
+    protected Task(String desc) {
         this.desc = desc;
     }
 
