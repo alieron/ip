@@ -1,5 +1,6 @@
 package marvin;
 
+import marvin.command.CommandType;
 import marvin.task.Deadline;
 import marvin.task.Event;
 import marvin.task.Task;
