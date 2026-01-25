@@ -18,6 +18,10 @@ public class Marvin {
         }
     }
 
+    public static void main(String[] args) {
+        new Marvin().run();
+    }
+
     private void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -31,9 +35,5 @@ public class Marvin {
                 ui.show(e.getMessage());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Marvin().run();
     }
 }

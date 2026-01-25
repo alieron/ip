@@ -13,17 +13,6 @@ public class Deadline extends Task {
         this.by = Parser.parseDate(by);
     }
 
-    @Override
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-        return "[D]" + super.toString() + " (by: " + by.format(formatter) + ")";
-    }
-
-    @Override
-    public String toStorageString() {
-        return "D | " + super.toStorageString() + " | " + by;
-    }
-
     public static Deadline fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 4) {
             throw new IllegalArgumentException("Invalid storage parts for marvin.task.Deadline: " + String.join(" | ", parts));
@@ -33,5 +22,16 @@ public class Deadline extends Task {
             deadline.mark();
         }
         return deadline;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return "[D]" + super.toString() + " (by: " + by.format(formatter) + ")";
+    }
+
+    @Override
+    public String toStorageString() {
+        return "D | " + super.toStorageString() + " | " + by;
     }
 }

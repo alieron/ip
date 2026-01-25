@@ -5,16 +5,6 @@ public class Todo extends Task {
         super(desc);
     }
 
-    @Override
-    public String toString() {
-        return "[T]" + super.toString();
-    }
-
-    @Override
-    public String toStorageString() {
-        return "T | " + super.toStorageString();
-    }
-
     public static Todo fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 3) {
             throw new IllegalArgumentException("Invalid storage parts for marvin.task.Todo: " + String.join(" | ", parts));
@@ -24,5 +14,15 @@ public class Todo extends Task {
             todo.mark();
         }
         return todo;
+    }
+
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
+
+    @Override
+    public String toStorageString() {
+        return "T | " + super.toStorageString();
     }
 }
