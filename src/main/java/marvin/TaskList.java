@@ -51,7 +51,7 @@ public class TaskList {
                 if (i < tasks.size() - 1) sb.append("\n");
             }
 
-            return "Here are your current tasks:\n" + sb.toString();
+            return sb.toString();
         }
     }
 
@@ -129,5 +129,9 @@ public class TaskList {
      */
     public List<Task> getTasks() {
         return this.tasks;
+    }
+
+    public TaskList findTasksContains(String snippet) {
+        return new TaskList(this.tasks.stream().filter(t -> t.checkDescContains(snippet)).toList());
     }
 }

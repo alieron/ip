@@ -48,4 +48,8 @@ public abstract class Task implements Storable {
     public String toStorageString() {
         return (isComplete ? "1 | " : "0 | ") + desc;
     }
+
+    public boolean checkDescContains(String snippet) {
+        return desc.contains(snippet);
+    }
 }

@@ -16,6 +16,7 @@ public class ParserTest {
             assertEquals("MarkCommand", Parser.parseCommand("mark 1").getClass().getSimpleName());
             assertEquals("UnmarkCommand", Parser.parseCommand("unmark 1").getClass().getSimpleName());
             assertEquals("DeleteCommand", Parser.parseCommand("delete 1").getClass().getSimpleName());
+            assertEquals("FindCommand", Parser.parseCommand("find book").getClass().getSimpleName());
             assertEquals("ExitCommand", Parser.parseCommand("bye").getClass().getSimpleName());
         } catch (Exception e) {
             fail();
