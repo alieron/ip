@@ -20,6 +20,11 @@ public class Parser {
         String[] command = commandString.trim().split("\\s+", 2);
 
         CommandType commandWord = CommandType.from(command[0]);
+
+        if (commandWord == null) {
+            throw new MarvinException("I don’t know what you want me to do.");
+        }
+
         String args = command.length > 1 ? command[1] : ""; // only handles one argument
 
         String desc;

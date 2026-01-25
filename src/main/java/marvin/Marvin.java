@@ -8,10 +8,10 @@ public class Marvin {
     private Ui ui;
 
     private Marvin() {
-        storage = new Storage();
+        storage = new Storage("data/tasks.txt");
         ui = new Ui();
         try {
-            taskList = new TaskList(storage.load());
+            taskList = storage.load();
         } catch (MarvinException e) {
             ui.showError(e.getMessage());
             taskList = new TaskList();

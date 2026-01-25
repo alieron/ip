@@ -5,17 +5,18 @@ import marvin.task.Task;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private final Path filePath = Path.of("data/tasks.txt");
+    private final Path filePath;
 
-    //    public marvin.Storage(String relativePath) {
-    //        this.filePath = Paths.get(relativePath);
-    //    }
+    public Storage(String relativePath) {
+        this.filePath = Paths.get(relativePath);
+    }
 
-    public List<Task> load() throws MarvinException {
+    public TaskList load() throws MarvinException {
         List<Task> tasks = new ArrayList<>();
         try {
             Path parent = filePath.getParent();
@@ -24,7 +25,7 @@ public class Storage {
             }
             if (!Files.exists(filePath)) {
                 Files.createFile(filePath);
-                return tasks;
+                return new TaskList();
             }
             List<String> lines = Files.readAllLines(filePath);
             for (int i = 0; i < lines.size(); i++) {
@@ -42,7 +43,7 @@ public class Storage {
         } catch (IOException e) {
             throw new MarvinException("Failed to load storage: " + e.getMessage());
         }
-        return tasks;
+        return new TaskList(tasks);
     }
 
     public void save(List<Task> tasks) throws MarvinException {
