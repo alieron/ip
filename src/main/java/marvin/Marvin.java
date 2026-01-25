@@ -2,6 +2,10 @@ package marvin;
 
 import marvin.command.Command;
 
+
+/**
+ * Marvin the paranoid android, now in chatbot form.
+ */
 public class Marvin {
     private TaskList taskList;
     private Storage storage;
@@ -33,6 +37,11 @@ public class Marvin {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args The input arguments
+     */
     public static void main(String[] args) {
         new Marvin().run();
     }

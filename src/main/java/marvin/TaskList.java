@@ -5,17 +5,34 @@ import marvin.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides an abstraction for the list of tasks.
+ */
 public class TaskList {
     private List<Task> tasks;
 
+    /**
+     * Instantiates a new TaskList.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Overloaded constructor.
+     * Instantiates a new TaskList from an existing list of tasks.
+     *
+     * @param tasks The list of tasks
+     */
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Add a task to the list of tasks.
+     *
+     * @param task The task
+     */
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -38,11 +55,25 @@ public class TaskList {
         }
     }
 
+    /**
+     * Delete a task at a specific one-based index.
+     *
+     * @param index The one-based index
+     * @return The task
+     * @throws MarvinException If no task is found at the provided index
+     */
     public Task deleteTask(int index) throws MarvinException {
         checkIndex(index);
         return tasks.remove(index - 1);
     }
 
+    /**
+     * Mark a task at a specific one-based index.
+     *
+     * @param index The one-based index
+     * @return The task
+     * @throws MarvinException If no task is found at the provided index
+     */
     public Task markTask(int index) throws MarvinException {
         checkIndex(index);
         Task selectedTask = tasks.get(index - 1);
@@ -50,6 +81,13 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Unmark a task at a specific one-based index.
+     *
+     * @param index The one-based index
+     * @return The task
+     * @throws MarvinException If no task is found at the provided index
+     */
     public Task unmarkTask(int index) throws MarvinException {
         checkIndex(index);
         Task selectedTask = tasks.get(index - 1);
@@ -57,11 +95,23 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Returns a task at a specific one-based index.
+     *
+     * @param index The one-based index
+     * @return The task
+     * @throws MarvinException If no task is found at the provided index
+     */
     public Task getTask(int index) throws MarvinException {
         checkIndex(index);
         return tasks.get(index - 1);
     }
 
+    /**
+     * Returns the number of tasks currently in the list of tasks.
+     *
+     * @return The number of tasks
+     */
     public int numTasks() {
         return tasks.size();
     }
@@ -72,6 +122,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the list of tasks.
+     *
+     * @return The entire list of tasks
+     */
     public List<Task> getTasks() {
         return this.tasks;
     }
