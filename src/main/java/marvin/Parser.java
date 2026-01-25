@@ -13,9 +13,16 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
 /**
- * Parser class with static utility functions to parse strings into various types.
+ * Provides static utility methods to parse strings into various types.
  */
 public class Parser {
+    /**
+     * Static function that parses a string and returns the corresponding command.
+     *
+     * @param commandString The command string
+     * @return The command
+     * @throws MarvinException If the command string is invalid or null
+     */
     public static Command parseCommand(String commandString) throws MarvinException {
         String[] command = commandString.trim().split("\\s+", 2);
 
@@ -93,12 +100,18 @@ public class Parser {
         }
     }
 
+    /**
+     * Static function that parses a date
+     *
+     * @param token The date string
+     * @return The date object
+     */
     public static LocalDate parseDate(String token) {
         if (token == null) {
             throw new IllegalArgumentException("token must not be null");
         }
         String trimmed = token.trim();
-        DateTimeFormatter[] formatters = new DateTimeFormatter[] {
+        DateTimeFormatter[] formatters = new DateTimeFormatter[]{
                 DateTimeFormatter.ISO_LOCAL_DATE_TIME,
                 new DateTimeFormatterBuilder()
                         .appendPattern("yyyy-MM-dd")
@@ -132,7 +145,8 @@ public class Parser {
         // fallback: try strict ISO date
         try {
             return LocalDate.parse(trimmed);
-        } catch (DateTimeParseException ignored) {}
+        } catch (DateTimeParseException ignored) {
+        }
 
         throw new IllegalArgumentException("Unrecognized date/time format: " + token);
     }
