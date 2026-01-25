@@ -29,7 +29,7 @@ A deadline for nothing in particular is deeply confusing.
 ____________________________________________________________
 ____________________________________________________________
 Another tedious thing for you to do.
-  adding: [D][ ] return book (by: Sunday)
+  adding: [D][ ] return book (by: Jan 25 2025)
 You have 2 tasks left.
 ____________________________________________________________
 ____________________________________________________________
@@ -43,44 +43,57 @@ An event with missing details is... incomplete.
 ____________________________________________________________
 ____________________________________________________________
 Another tedious thing for you to do.
-  adding: [E][ ] project meeting (from: Mon 2pm to: 4pm)
+  adding: [E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
 You have 3 tasks left.
 ____________________________________________________________
 ____________________________________________________________
 Here are your current tasks:
 1.[T][ ] read book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[D][ ] return book (by: Jan 25 2025)
+3.[E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
 ____________________________________________________________
 ____________________________________________________________
 Progress, I suppose.
-  marked: [D][X] return book (by: Sunday)
+  marked: [D][X] return book (by: Jan 25 2025)
 ____________________________________________________________
 ____________________________________________________________
 Here are your current tasks:
 1.[T][ ] read book
-2.[D][X] return book (by: Sunday)
-3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[D][X] return book (by: Jan 25 2025)
+3.[E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
 ____________________________________________________________
 ____________________________________________________________
 Back to square one...
-  unmarked: [D][ ] return book (by: Sunday)
+  unmarked: [D][ ] return book (by: Jan 25 2025)
 ____________________________________________________________
 ____________________________________________________________
 Here are your current tasks:
 1.[T][ ] read book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[D][ ] return book (by: Jan 25 2025)
+3.[E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
 ____________________________________________________________
 ____________________________________________________________
 One less thing to occupy this miserable existence.
-  deleting: [D][ ] return book (by: Sunday)
+  deleting: [D][ ] return book (by: Jan 25 2025)
 You have 2 tasks left.
 ____________________________________________________________
 ____________________________________________________________
 Here are your current tasks:
 1.[T][ ] read book
-2.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
+____________________________________________________________
+____________________________________________________________
+That task does not exist. I checked. Twice.
+____________________________________________________________
+____________________________________________________________
+One less thing to occupy this miserable existence.
+  deleting: [T][ ] read book
+You have 1 tasks left.
+____________________________________________________________
+____________________________________________________________
+One less thing to occupy this miserable existence.
+  deleting: [E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
+You have 0 tasks left.
 ____________________________________________________________
 ____________________________________________________________
 That task does not exist. I checked. Twice.
