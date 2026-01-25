@@ -45,6 +45,9 @@ public class Parser {
             case DELETE:
                 return new DeleteCommand(Integer.parseInt(args));
 
+            case FIND:
+                return new FindCommand(args);
+
             case TODO:
                 if (args.isBlank()) {
                     throw new MarvinException("A todo without a description is rather pointless.");
