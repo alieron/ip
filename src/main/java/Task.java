@@ -42,6 +42,6 @@ public abstract class Task implements Storable {
 
     @Override
     public String toStorageString() {
-        return isComplete ? "1 | " : "0 | " + desc;
+        return (isComplete ? "1 | " : "0 | ") + desc;
     }
 }
