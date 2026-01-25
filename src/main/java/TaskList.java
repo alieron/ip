@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public void addTask(Task task) {
         tasks.add(task);
@@ -57,5 +58,9 @@ public class TaskList {
         if (index <= 0 || index > tasks.size()) { // 1-based indexing,
             throw new MarvinException("That task does not exist. I checked. Twice.");
         }
+    }
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 }
