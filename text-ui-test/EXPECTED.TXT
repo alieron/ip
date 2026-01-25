@@ -57,10 +57,9 @@ Progress, I suppose.
   marked: [D][X] return book (by: Jan 25 2025)
 ____________________________________________________________
 ____________________________________________________________
-Here are your current tasks:
+Here are the matching tasks in your list:
 1.[T][ ] read book
 2.[D][X] return book (by: Jan 25 2025)
-3.[E][ ] project meeting (from: Jan 1 2025 to: Jan 2 2025)
 ____________________________________________________________
 ____________________________________________________________
 Back to square one...

@@ -9,7 +9,7 @@ event /from Mon 2pm /to 4pm
 event project meeting /from 1/1/2025 /to 2025-01-02
 list
 mark 2
-list
+find book
 unmark 2
 list
 delete 2
