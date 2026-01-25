@@ -13,7 +13,7 @@ public class Marvin {
         try {
             taskList = new TaskList(storage.load());
         } catch (MarvinException e) {
-            ui.show(e.getMessage());
+            ui.showError(e.getMessage());
             taskList = new TaskList();
         }
     }
@@ -28,7 +28,7 @@ public class Marvin {
                 c.execute(taskList, ui, storage);
                 isExit = c.isExit();
             } catch (MarvinException e) {
-                ui.showError(e.getMessage());
+                ui.show(e.getMessage());
             }
         }
     }

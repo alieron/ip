@@ -29,7 +29,7 @@ public class Ui {
     }
 
     public void showGoodbye() {
-        System.out.println("Goodbye.\n"
+        show("Goodbye.\n"
                 + "Thank you for wasting my time.");
     }
 
