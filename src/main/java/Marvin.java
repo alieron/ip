@@ -47,6 +47,7 @@ public class Marvin {
     }
 
     private void exit() {
+        storage.save(taskList);
         echo("Goodbye.\n"
                 + "Thank you for wasting my time.");
     }
