@@ -98,7 +98,7 @@ public class Parser {
             throw new IllegalArgumentException("token must not be null");
         }
         String trimmed = token.trim();
-        DateTimeFormatter[] formatters = new DateTimeFormatter[] {
+        DateTimeFormatter[] formatters = new DateTimeFormatter[]{
                 DateTimeFormatter.ISO_LOCAL_DATE_TIME,
                 new DateTimeFormatterBuilder()
                         .appendPattern("yyyy-MM-dd")
@@ -132,7 +132,8 @@ public class Parser {
         // fallback: try strict ISO date
         try {
             return LocalDate.parse(trimmed);
-        } catch (DateTimeParseException ignored) {}
+        } catch (DateTimeParseException ignored) {
+        }
 
         throw new IllegalArgumentException("Unrecognized date/time format: " + token);
     }
