@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClass.set("marvin.Marvin")
+    mainClass.set("marvin.Launcher")
 }
 
 checkstyle {

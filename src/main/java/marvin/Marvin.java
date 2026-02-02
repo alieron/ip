@@ -11,7 +11,7 @@ public class Marvin {
     private Storage storage;
     private Ui ui;
 
-    private Marvin() {
+    Marvin() {
         storage = new Storage("data/tasks.txt");
         ui = new Ui();
         try {
@@ -44,5 +44,15 @@ public class Marvin {
                 ui.show(e.getMessage());
             }
         }
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     *
+     * @param input The user's input
+     * @return Marvin's response
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }
