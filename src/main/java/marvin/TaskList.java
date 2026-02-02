@@ -1,6 +1,7 @@
 package marvin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import marvin.task.Task;
@@ -31,10 +32,10 @@ public class TaskList {
     /**
      * Add a task to the list of tasks.
      *
-     * @param task The task
+     * @param newTasks The task
      */
-    public void addTask(Task task) {
-        tasks.add(task);
+    public void addTask(Task ... newTasks) {
+        tasks.addAll(Arrays.asList(newTasks));
     }
 
     @Override
