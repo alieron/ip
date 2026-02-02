@@ -61,12 +61,12 @@ public class Storage {
     }
 
     /**
-     * Save list of tasks to storage file.
+     * Save tasks to storage file.
      *
-     * @param tasks The list of tasks
+     * @param tasks The tasks to save
      * @throws MarvinException If the program fails to write to the file
      */
-    public void save(List<Task> tasks) throws MarvinException {
+    public void save(Task ... tasks) throws MarvinException {
         List<String> lines = new ArrayList<>();
         for (Task t : tasks) {
             lines.add(t.toStorageString());
@@ -90,6 +90,6 @@ public class Storage {
      * @throws MarvinException If the program fails to write to the file
      */
     public void save(TaskList taskList) throws MarvinException {
-        save(taskList.getTasks());
+        save(taskList.getTasks().toArray(new Task[0]));
     }
 }
