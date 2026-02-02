@@ -1,5 +1,6 @@
 package marvin.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import marvin.Marvin;
+import marvin.command.CommandResult;
 
 /**
  * Controller for the main GUI.
@@ -32,9 +34,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Marvin instance */
+    /** Injects the Marvin instance and welcome the user */
     public void setMarvin(Marvin m) {
         marvin = m;
+        dialogContainer.getChildren().add(
+                DialogBox.getMarvinDialog(marvin.welcomUser(), marvinImage)
+        );
     }
 
     /**
@@ -44,11 +49,23 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
-        String marvinResponse = marvin.getResponse(userInput.getText());
+        CommandResult marvinResult = marvin.runCommand(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
-                DialogBox.getMarvinDialog(marvinResponse, marvinImage)
+                DialogBox.getMarvinDialog(marvinResult.getResponse(), marvinImage)
         );
         userInput.clear();
+
+        if (marvinResult.shouldExit()) {
+            // Delay closing to allow user to see the goodbye message
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1500); // 1.5 second delay
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.exit();
+            }).start();
+        }
     }
 }

@@ -3,7 +3,7 @@ package marvin.command;
 import marvin.MarvinException;
 import marvin.Storage;
 import marvin.TaskList;
-import marvin.Ui;
+import marvin.gui.Ui;
 import marvin.task.Task;
 
 public class UnmarkCommand extends Command {
@@ -14,11 +14,12 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         Task selectedTask = taskList.unmarkTask(taskIdx);
         storage.save(taskList);
-        ui.show("Back to square one...\n  unmarked: "
+        String response = ui.wrapMessage("Back to square one...\n  unmarked: "
                 + selectedTask
         );
+        return new CommandResult(response);
     }
 }

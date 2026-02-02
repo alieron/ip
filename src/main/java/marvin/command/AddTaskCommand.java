@@ -3,7 +3,7 @@ package marvin.command;
 import marvin.MarvinException;
 import marvin.Storage;
 import marvin.TaskList;
-import marvin.Ui;
+import marvin.gui.Ui;
 import marvin.task.Task;
 
 public class AddTaskCommand extends Command {
@@ -14,12 +14,13 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         taskList.addTask(task);
         storage.save(taskList);
-        ui.show("Another tedious thing for you to do.\n  adding: "
+        String response = ui.wrapMessage("Another tedious thing for you to do.\n  adding: "
                 + task
                 + "\nYou have " + taskList.numTasks() + " tasks left."
         );
+        return new CommandResult(response);
     }
 }
