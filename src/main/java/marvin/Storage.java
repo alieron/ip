@@ -1,13 +1,13 @@
 package marvin;
 
-import marvin.task.Task;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import marvin.task.Task;
 
 /**
  * Provides an abstraction for saving and loading the TaskList.
@@ -89,7 +89,6 @@ public class Storage {
      * @param taskList The TaskList
      * @throws MarvinException If the program fails to write to the file
      */
-// convenience overload so callers can pass marvin.TaskList directly
     public void save(TaskList taskList) throws MarvinException {
         save(taskList.getTasks());
     }
