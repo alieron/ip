@@ -1,7 +1,8 @@
 package marvin;
 
 import marvin.command.Command;
-
+import marvin.command.CommandResult;
+import marvin.gui.Ui;
 
 /**
  * Marvin the paranoid android, now in chatbot form.
@@ -11,38 +12,33 @@ public class Marvin {
     private Storage storage;
     private Ui ui;
 
-    private Marvin() {
+    Marvin() {
         storage = new Storage("data/tasks.txt");
         ui = new Ui();
         try {
             taskList = storage.load();
         } catch (MarvinException e) {
-            ui.showError(e.getMessage());
+            ui.getError(e.getMessage());
             taskList = new TaskList();
         }
     }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args The input arguments
-     */
-    public static void main(String[] args) {
-        new Marvin().run();
+    public String welcomUser() {
+        return ui.getWelcome();
     }
 
-    private void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parseCommand(fullCommand);
-                c.execute(taskList, ui, storage);
-                isExit = c.isExit();
-            } catch (MarvinException e) {
-                ui.show(e.getMessage());
-            }
+    /**
+     * Generates a response for the user's chat message.
+     *
+     * @param fullCommand The user's command
+     * @return Marvin's response
+     */
+    public CommandResult runCommand(String fullCommand) {
+        try {
+            Command c = Parser.parseCommand(fullCommand);
+            return c.execute(taskList, ui, storage);
+        } catch (MarvinException e) {
+            return new CommandResult(ui.wrapMessage(e.getMessage()), false);
         }
     }
 }

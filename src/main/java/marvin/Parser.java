@@ -117,31 +117,32 @@ public class Parser {
      * @param token The date string
      * @return The date object
      */
+    @SuppressWarnings("checkstyle:Indentation")
     public static LocalDate parseDate(String token) {
         if (token == null) {
             throw new IllegalArgumentException("token must not be null");
         }
         String trimmed = token.trim();
-        DateTimeFormatter[] formatters = new DateTimeFormatter[] {
-            DateTimeFormatter.ISO_LOCAL_DATE_TIME,
-            new DateTimeFormatterBuilder()
-                    .appendPattern("yyyy-MM-dd")
-                    .optionalStart().appendLiteral('T').appendPattern("HH:mm").optionalEnd()
-                    .optionalStart().appendLiteral(' ').appendPattern("HHmm").optionalEnd()
-                    .toFormatter(),
-            new DateTimeFormatterBuilder()
-                    .appendPattern("yyyy-MM-dd")
-                    .optionalStart().appendLiteral(' ').appendPattern("HH:mm").optionalEnd()
-                    .toFormatter(),
-            new DateTimeFormatterBuilder()
-                    .appendPattern("d/M/yyyy")
-                    .optionalStart().appendLiteral(' ').appendPattern("HHmm").optionalEnd()
-                    .toFormatter(),
-            new DateTimeFormatterBuilder()
-                    .appendPattern("d/M/yyyy")
-                    .optionalStart().appendLiteral(' ').appendPattern("HH:mm").optionalEnd()
-                    .toFormatter(),
-            DateTimeFormatter.ISO_LOCAL_DATE
+        DateTimeFormatter[] formatters = new DateTimeFormatter[]{
+                DateTimeFormatter.ISO_LOCAL_DATE_TIME,
+                new DateTimeFormatterBuilder()
+                        .appendPattern("yyyy-MM-dd")
+                        .optionalStart().appendLiteral('T').appendPattern("HH:mm").optionalEnd()
+                        .optionalStart().appendLiteral(' ').appendPattern("HHmm").optionalEnd()
+                        .toFormatter(),
+                new DateTimeFormatterBuilder()
+                        .appendPattern("yyyy-MM-dd")
+                        .optionalStart().appendLiteral(' ').appendPattern("HH:mm").optionalEnd()
+                        .toFormatter(),
+                new DateTimeFormatterBuilder()
+                        .appendPattern("d/M/yyyy")
+                        .optionalStart().appendLiteral(' ').appendPattern("HHmm").optionalEnd()
+                        .toFormatter(),
+                new DateTimeFormatterBuilder()
+                        .appendPattern("d/M/yyyy")
+                        .optionalStart().appendLiteral(' ').appendPattern("HH:mm").optionalEnd()
+                        .toFormatter(),
+                DateTimeFormatter.ISO_LOCAL_DATE
         };
 
         for (DateTimeFormatter fmt : formatters) {

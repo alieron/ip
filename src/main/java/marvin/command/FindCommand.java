@@ -2,7 +2,7 @@ package marvin.command;
 
 import marvin.Storage;
 import marvin.TaskList;
-import marvin.Ui;
+import marvin.gui.Ui;
 
 public class FindCommand extends Command {
     private final String snippet;
@@ -12,8 +12,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.show("Here are the matching tasks in your list:\n"
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
+        String response = ui.wrapMessage("Here are the matching tasks in your list:\n"
                 + taskList.findTasksContains(snippet).toString());
+        return new CommandResult(response);
     }
 }

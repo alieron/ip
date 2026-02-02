@@ -3,7 +3,7 @@ package marvin.command;
 import marvin.MarvinException;
 import marvin.Storage;
 import marvin.TaskList;
-import marvin.Ui;
+import marvin.gui.Ui;
 
 /**
  * Base command: implementors must provide execute.
@@ -11,7 +11,7 @@ import marvin.Ui;
  */
 public abstract class Command {
 
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException;
+    public abstract CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException;
 
     public boolean isExit() {
         return false;

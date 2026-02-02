@@ -3,7 +3,7 @@ package marvin.command;
 import marvin.MarvinException;
 import marvin.Storage;
 import marvin.TaskList;
-import marvin.Ui;
+import marvin.gui.Ui;
 import marvin.task.Task;
 
 public class MarkCommand extends Command {
@@ -14,11 +14,12 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         Task selectedTask = taskList.markTask(taskIdx);
         storage.save(taskList);
-        ui.show("Progress, I suppose.\n  marked: "
+        String response = ui.wrapMessage("Progress, I suppose.\n  marked: "
                 + selectedTask
         );
+        return new CommandResult(response);
     }
 }

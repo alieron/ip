@@ -1,4 +1,4 @@
-package marvin;
+package marvin.gui;
 
 import java.util.Scanner;
 
@@ -6,14 +6,14 @@ import java.util.Scanner;
  * Represents the interface between the user and the chatbot.
  */
 public class Ui {
-    private static final String SEPARATOR = "____________________________________________________________";
+    private static final String SEPARATOR = "___________________________________________________";
 
     private final Scanner in = new Scanner(System.in);
 
     /**
      * Prints the welcome message.
      */
-    public void showWelcome() {
+    public String getWelcome() {
         String logo = """
                  __  __
                 |  \\/  |                 (_)
@@ -23,22 +23,21 @@ public class Ui {
                 |_|  |_|\\__,_|_|    \\_/  |_|_| |_|
                 """;
 
-        System.out.println("Hello. I am Marvin.\n"
+        return "Hello. I am Marvin.\n"
                 + logo
                 + "\nI have a brain the size of a planet,\n"
                 + "and here I am, greeting users.\n"
                 + "It’s all terribly depressing.\n"
                 + "\nAnyways, what do you want?\n"
                 + "Not that it matters...\n"
-                + SEPARATOR
-        );
+                + SEPARATOR;
     }
 
     /**
      * Prints the goodbye message.
      */
-    public void showGoodbye() {
-        show("Goodbye.\n"
+    public String getGoodBye() {
+        return wrapMessage("Goodbye.\n"
                 + "Thank you for wasting my time.");
     }
 
@@ -47,10 +46,8 @@ public class Ui {
      *
      * @param message The message
      */
-    public void show(String message) {
-        System.out.println(SEPARATOR);
-        System.out.println(message);
-        System.out.println(SEPARATOR);
+    public String wrapMessage(String message) {
+        return SEPARATOR + "\n" + message + "\n" + SEPARATOR;
     }
 
     /**
@@ -58,16 +55,7 @@ public class Ui {
      *
      * @param message The message
      */
-    public void showError(String message) {
-        System.err.println("Error: " + message);
-    }
-
-    /**
-     * Returns the command string when the user sends a newline character.
-     *
-     * @return The command string
-     */
-    public String readCommand() {
-        return in.hasNextLine() ? in.nextLine() : null;
+    public String getError(String message) {
+        return wrapMessage("Error: " + message);
     }
 }
