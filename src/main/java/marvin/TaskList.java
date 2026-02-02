@@ -1,9 +1,9 @@
 package marvin;
 
-import marvin.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import marvin.task.Task;
 
 /**
  * Provides an abstraction for the list of tasks.
@@ -48,7 +48,9 @@ public class TaskList {
                 sb.append(i + 1);
                 sb.append(".");
                 sb.append(tasks.get(i));
-                if (i < tasks.size() - 1) sb.append("\n");
+                if (i < tasks.size() - 1) {
+                    sb.append("\n");
+                }
             }
 
             return sb.toString();

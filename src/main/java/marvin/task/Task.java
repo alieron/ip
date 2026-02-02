@@ -24,10 +24,10 @@ public abstract class Task implements Storable {
         boolean done = "1".equals(doneToken);
 
         return switch (type) {
-            case "T" -> Todo.fromStorageParts(parts, done);
-            case "D" -> Deadline.fromStorageParts(parts, done);
-            case "E" -> Event.fromStorageParts(parts, done);
-            default -> throw new IllegalArgumentException("Unknown task type: " + type);
+        case "T" -> Todo.fromStorageParts(parts, done);
+        case "D" -> Deadline.fromStorageParts(parts, done);
+        case "E" -> Event.fromStorageParts(parts, done);
+        default -> throw new IllegalArgumentException("Unknown task type: " + type);
         };
     }
 
