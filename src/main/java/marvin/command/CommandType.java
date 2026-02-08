@@ -12,7 +12,8 @@ public enum CommandType {
     TODO("todo"),
     DEADLINE("deadline"),
     EVENT("event"),
-    EXIT("bye");
+    EXIT("bye"),
+    UNKNOWN("unknown");
 
     private static final Map<String, CommandType> MAP = new HashMap<>();
 
@@ -28,10 +29,13 @@ public enum CommandType {
         this.word = word;
     }
 
-    public static CommandType from(String w) {
-        if (w == null) {
-            return null;
+    public static CommandType from(String command) {
+        CommandType type;
+        if (command == null) {
+            type = UNKNOWN;
         }
-        return MAP.get(w.toLowerCase());
+        type = MAP.getOrDefault(command.toLowerCase(), UNKNOWN);
+        assert type != null : "Command type should not be null";
+        return type;
     }
 }

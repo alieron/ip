@@ -13,6 +13,13 @@ public class Event extends Task {
         super(desc);
         this.from = Parser.parseDate(from);
         this.to = Parser.parseDate(to);
+        // Ensure that `from` is earlier than `to`
+        if (this.from.isAfter(this.to)) {
+            LocalDate temp = this.from;
+            this.from = this.to;
+            this.to = temp;
+        }
+        assert this.from.isBefore(this.to) : "`from` should be before `to`";
     }
 
     public static Event fromStorageParts(String[] parts, boolean isComplete) {
