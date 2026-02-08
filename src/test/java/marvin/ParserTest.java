@@ -10,9 +10,13 @@ public class ParserTest {
     public void parseCommand_validCommand_success() {
         try {
             assertEquals("ListCommand", Parser.parseCommand("list").getClass().getSimpleName());
-            assertEquals("AddTaskCommand", Parser.parseCommand("todo read book").getClass().getSimpleName());
-            assertEquals("AddTaskCommand", Parser.parseCommand("deadline submit report /by 2024-12-01").getClass().getSimpleName());
-            assertEquals("AddTaskCommand", Parser.parseCommand("event team meeting /from 2024-11-15 /to 2024-11-16").getClass().getSimpleName());
+            assertEquals("AddTaskCommand",
+                    Parser.parseCommand("todo read book").getClass().getSimpleName());
+            assertEquals("AddTaskCommand",
+                    Parser.parseCommand("deadline submit report /by 2024-12-01").getClass().getSimpleName());
+            assertEquals("AddTaskCommand",
+                    Parser.parseCommand("event team meeting /from 2024-11-15 /to 2024-11-16")
+                            .getClass().getSimpleName());
             assertEquals("MarkCommand", Parser.parseCommand("mark 1").getClass().getSimpleName());
             assertEquals("UnmarkCommand", Parser.parseCommand("unmark 1").getClass().getSimpleName());
             assertEquals("DeleteCommand", Parser.parseCommand("delete 1").getClass().getSimpleName());
@@ -104,12 +108,12 @@ public class ParserTest {
         }
 
         // TODO: Enable this tests after improving date validation in Parser.parseDate
-//        try {
-//            Parser.parseDate("31/02/2024"); // Invalid date
-//            fail();
-//        } catch (Exception e) {
-//            assertEquals("Unrecognized date/time format: 31/02/2024", e.getMessage());
-//        }
+        //        try {
+        //            Parser.parseDate("31/02/2024"); // Invalid date
+        //            fail();
+        //        } catch (Exception e) {
+        //            assertEquals("Unrecognized date/time format: 31/02/2024", e.getMessage());
+        //        }
 
         try {
             Parser.parseDate("invalid-date");

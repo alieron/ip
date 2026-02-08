@@ -159,6 +159,7 @@ public class Parser {
         try {
             return LocalDate.parse(trimmed);
         } catch (DateTimeParseException ignored) {
+            // nothing to be done
         }
 
         throw new IllegalArgumentException("Unrecognized date/time format: " + token);

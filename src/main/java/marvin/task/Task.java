@@ -2,6 +2,9 @@ package marvin.task;
 
 import marvin.Storable;
 
+/**
+ * The abstract Task class.
+ */
 public abstract class Task implements Storable {
     protected boolean isComplete = false; // task is incomplete by default
     protected String desc;

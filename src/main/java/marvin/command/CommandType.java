@@ -3,6 +3,10 @@ package marvin.command;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * The enum for the types of commands the user can invoke.
+ */
 public enum CommandType {
     LIST("list"),
     MARK("mark"),
@@ -29,12 +33,18 @@ public enum CommandType {
         this.word = word;
     }
 
-    public static CommandType from(String command) {
+    /**
+     * Factory method: Returns the command type from the command keyword.
+     *
+     * @param keyword The keyword of the command
+     * @return The corresponding command type
+     */
+    public static CommandType from(String keyword) {
         CommandType type;
-        if (command == null) {
+        if (keyword == null) {
             type = UNKNOWN;
         }
-        type = MAP.getOrDefault(command.toLowerCase(), UNKNOWN);
+        type = MAP.getOrDefault(keyword.toLowerCase(), UNKNOWN);
         assert type != null : "Command type should not be null";
         return type;
     }

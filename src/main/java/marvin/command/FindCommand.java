@@ -4,6 +4,9 @@ import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
 
+/**
+ * The Command to search the tasks for matching tasks with a keyword in their descriptions.
+ */
 public class FindCommand extends Command {
     private final String snippet;
 

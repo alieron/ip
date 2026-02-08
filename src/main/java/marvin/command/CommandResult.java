@@ -1,23 +1,12 @@
 package marvin.command;
 
-public class CommandResult {
-    private final String response;
-    private final boolean shouldExit;
-
-    public CommandResult(String response, boolean shouldExit) {
-        this.response = response;
-        this.shouldExit = shouldExit;
-    }
+/**
+ * Record of the result.
+ * Result of running a command, determines whether the chatbot should exit or not and the chatbot's response.
+ */
+public record CommandResult(String response, boolean shouldExit) {
 
     public CommandResult(String response) {
         this(response, false);
-    }
-
-    public String getResponse() {
-        return response;
-    }
-
-    public boolean shouldExit() {
-        return shouldExit;
     }
 }

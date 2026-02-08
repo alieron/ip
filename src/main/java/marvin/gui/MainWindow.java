@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
     public void setMarvin(Marvin m) {
         marvin = m;
         dialogContainer.getChildren().add(
-                DialogBox.getMarvinDialog(marvin.welcomUser(), marvinImage)
+                DialogBox.getMarvinDialog(marvin.welcomeUser(), marvinImage)
         );
     }
 
@@ -52,7 +52,7 @@ public class MainWindow extends AnchorPane {
         CommandResult marvinResult = marvin.runCommand(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
-                DialogBox.getMarvinDialog(marvinResult.getResponse(), marvinImage)
+                DialogBox.getMarvinDialog(marvinResult.response(), marvinImage)
         );
         userInput.clear();
 
