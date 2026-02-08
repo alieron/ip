@@ -23,7 +23,7 @@ public class Marvin {
         }
     }
 
-    public String welcomUser() {
+    public String welcomeUser() {
         return ui.getWelcome();
     }
 
@@ -38,7 +38,7 @@ public class Marvin {
             Command c = Parser.parseCommand(fullCommand);
             return c.execute(taskList, ui, storage);
         } catch (MarvinException e) {
-            return new CommandResult(ui.wrapMessage(e.getMessage()), false);
+            return new CommandResult(ui.getError(e.getMessage()), false);
         }
     }
 }

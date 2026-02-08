@@ -6,6 +6,9 @@ import marvin.TaskList;
 import marvin.gui.Ui;
 import marvin.task.Task;
 
+/**
+ * The Command to mark a task, setting it to be complete.
+ */
 public class MarkCommand extends Command {
     private final int taskIdx;
 
@@ -16,7 +19,7 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         Task selectedTask = taskList.markTask(taskIdx);
-        storage.save(taskList);
+        storage.saveTasks(taskList);
         String response = ui.wrapMessage("Progress, I suppose.\n  marked: "
                 + selectedTask
         );

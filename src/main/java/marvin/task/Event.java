@@ -5,16 +5,33 @@ import java.time.format.DateTimeFormatter;
 
 import marvin.Parser;
 
+/**
+ * The Event task.
+ */
 public class Event extends Task {
     private LocalDate from;
     private LocalDate to;
 
+    /**
+     * Instantiates a new Deadline.
+     *
+     * @param desc The description
+     * @param from The start date
+     * @param to   The end date
+     */
     public Event(String desc, String from, String to) {
         super(desc);
         this.from = Parser.parseDate(from);
         this.to = Parser.parseDate(to);
     }
 
+    /**
+     * From storage parts deadline.
+     *
+     * @param parts      The saved task data
+     * @param isComplete Whether the task has already been completed
+     * @return the deadline
+     */
     public static Event fromStorageParts(String[] parts, boolean isComplete) {
         if (parts.length < 5) {
             throw new IllegalArgumentException("Invalid storage parts for marvin.task.Event: "

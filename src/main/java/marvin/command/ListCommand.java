@@ -4,6 +4,9 @@ import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
 
+/**
+ * The Command to list all tasks.
+ */
 public class ListCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
