@@ -26,14 +26,20 @@ public abstract class Task implements Storable {
         String doneToken = parts[1];
         boolean done = "1".equals(doneToken);
 
-        return switch (type) {
-            case "T" -> Todo.fromStorageParts(parts, done);
-            case "D" -> Deadline.fromStorageParts(parts, done);
-            case "E" -> Event.fromStorageParts(parts, done);
-            default ->
-                    // keep as exception, possible that the error would come from IO or user editing the save file
-                    throw new IllegalArgumentException("Unknown task type: " + type);
-        };
+        // avoid lambda style switch-case
+        // different indentation levels, 0 for regular, 4 for lambda makes checkstyle error
+        // formatter works, but checkstyle fails
+        switch (type) {
+        case "T":
+            return Todo.fromStorageParts(parts, done);
+        case "D":
+            return Deadline.fromStorageParts(parts, done);
+        case "E":
+            return Event.fromStorageParts(parts, done);
+        default:
+            // keep as exception, possible that the error would come from IO or user editing the save file
+            throw new IllegalArgumentException("Unknown task type: " + type);
+        }
     }
 
     @Override

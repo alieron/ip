@@ -7,7 +7,7 @@ import javafx.application.Application;
  */
 public class Launcher {
     public static void main(String[] args) {
-//        assert false : "asserts are enabled!";
+        // assert false : "asserts are enabled!";
         Application.launch(Main.class, args);
     }
 }
