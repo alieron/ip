@@ -36,15 +36,14 @@ public class Parser {
 
         CommandType commandWord = CommandType.from(command[0]);
 
-        if (commandWord == null) {
-            throw new MarvinException("I don’t know what you want me to do.");
-        }
-
         String args = command.length > 1 ? command[1] : ""; // only handles one argument
 
         String desc;
 
         switch (commandWord) {
+        case UNKNOWN:
+            throw new MarvinException("I don’t know what you want me to do.");
+
         case EXIT:
             return new ExitCommand();
 
@@ -107,7 +106,9 @@ public class Parser {
             return new AddTaskCommand(new Event(desc, from, to));
 
         default:
-            throw new MarvinException("I don’t know what you want me to do.");
+            // Unknown commands should already be handled by first case
+            assert false : "Unknown command not handled properly"; // this line should not be executed
+            return null;
         }
     }
 
