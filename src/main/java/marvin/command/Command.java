@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marvin.MarvinException;
+import marvin.Parser;
 import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
@@ -80,16 +81,14 @@ public abstract class Command {
     public static Command parseCommand(String command) throws MarvinException {
         CommandType type = CommandType.from(command);
 
-        String[] commandParts = command.trim().split("\\s+", 2);
-
-        String args = commandParts.length > 1 ? commandParts[1] : ""; // only handles one argument
-
-        String desc;
+        String argString = Parser.extractMainArg(command);
+        Map<String, String> otherArgs = Parser.parseArgs(command);
 
         switch (type) {
         case UNKNOWN:
             throw new MarvinException("I don’t know what you want me to do.");
 
+            // by this point, the command is at least known
         case EXIT:
             return new ExitCommand();
 
@@ -97,59 +96,68 @@ public abstract class Command {
             return new ListCommand();
 
         case MARK:
-            return new MarkCommand(Integer.parseInt(args));
+            try {
+                return new MarkCommand(Integer.parseInt(argString));
+            } catch (NumberFormatException e) {
+                throw new MarvinException("You need to tell me which one to mark.");
+            }
 
         case UNMARK:
-            return new UnmarkCommand(Integer.parseInt(args));
+            try {
+                return new UnmarkCommand(Integer.parseInt(argString));
+            } catch (NumberFormatException e) {
+                throw new MarvinException("You need to tell me which one to unmark.");
+            }
 
         case DELETE:
-            return new DeleteCommand(Integer.parseInt(args));
+            try {
+                return new DeleteCommand(Integer.parseInt(argString));
+            } catch (NumberFormatException e) {
+                throw new MarvinException("You need to tell me which one to delete.");
+            }
 
         case FIND:
-            return new FindCommand(args);
+            if (argString.isBlank()) {
+                throw new MarvinException("It is pointless to search for nothing.");
+            }
+            return new FindCommand(argString);
 
         case TODO:
-            if (args.isBlank()) {
+            if (argString.isBlank()) {
                 throw new MarvinException("A todo without a description is rather pointless.");
             }
 
-            return new AddTaskCommand(new Todo(args));
+            return new AddTaskCommand(new Todo(argString));
 
         case DEADLINE:
-            String[] split = args.split("/by", 2);
-            if (split.length < 2) {
-                throw new MarvinException("Deadlines tend to require a deadline. Try using /by.");
-            }
-
-            desc = split[0].trim();
-
-            String by = split[1].trim();
-            if (desc.isEmpty() || by.isEmpty()) {
+            if (argString.isBlank()) {
                 throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
             }
 
-            return new AddTaskCommand(new Deadline(desc, by));
+            String by = Parser.getFlag(otherArgs, "-b", "--by");
+
+            if (by == null) {
+                throw new MarvinException("Deadlines tend to require a deadline. Try using -b or --by.");
+            }
+
+            return new AddTaskCommand(new Deadline(argString, by));
 
         case EVENT:
-            String[] fromSplit = args.split("/from", 2);
-            if (fromSplit.length < 2) {
-                throw new MarvinException("An event should probably start at some point. Try /from.");
-            }
-
-            desc = fromSplit[0].trim();
-
-            String[] toSplit = fromSplit[1].split("/to", 2);
-            if (toSplit.length < 2) {
-                throw new MarvinException("Events usually end. Try specifying /to.");
-            }
-
-            String from = toSplit[0].trim();
-            String to = toSplit[1].trim();
-            if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
+            if (argString.isEmpty()) {
                 throw new MarvinException("An event with missing details is... incomplete.");
             }
 
-            return new AddTaskCommand(new Event(desc, from, to));
+            String from = Parser.getFlag(otherArgs, "-f", "--from");
+            if (from == null) {
+                throw new MarvinException("An event should probably start at some point. Try using -f or --from.");
+            }
+
+            String to = Parser.getFlag(otherArgs, "-t", "--to");
+            if (to == null) {
+                throw new MarvinException("Events usually end. Try specifying -t or --to.");
+            }
+
+            return new AddTaskCommand(new Event(argString, from, to));
 
         default:
             // Unknown commands should already be handled by first case
