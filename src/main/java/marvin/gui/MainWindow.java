@@ -32,9 +32,22 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Add hover effect for send button
+        sendButton.setOnMouseEntered(e ->
+                sendButton.setStyle("-fx-background-color: #14919b; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;")
+        );
+        sendButton.setOnMouseExited(e ->
+                sendButton.setStyle("-fx-background-color: #0d7377; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;")
+        );
+
+        // Focus on text field when window opens
+        Platform.runLater(() -> userInput.requestFocus());
     }
 
-    /** Injects the Marvin instance and welcome the user */
+    /**
+     * Injects the Marvin instance and welcome the user
+     */
     public void setMarvin(Marvin m) {
         marvin = m;
         dialogContainer.getChildren().add(
@@ -49,6 +62,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
+
+        // Don't process empty input
+        if (userText.trim().isEmpty()) {
+            return;
+        }
+
         CommandResult marvinResult = marvin.runCommand(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
