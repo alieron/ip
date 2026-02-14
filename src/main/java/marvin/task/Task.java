@@ -16,6 +16,9 @@ public abstract class Task implements Storable {
     /**
      * Factory method to parse a storage line and return a marvin.task.Task.
      * Format expected: TYPE | DONE(0/1) | description [| extra...]
+     *
+     * @param line The entry to load into the task
+     * @return The loaded task
      */
     public static Task fromStorageString(String line) {
         String[] parts = line.split("\\s*\\|\\s*");
