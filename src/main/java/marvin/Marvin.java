@@ -35,7 +35,7 @@ public class Marvin {
      */
     public CommandResult runCommand(String fullCommand) {
         try {
-            Command c = Parser.parseCommand(fullCommand);
+            Command c = Command.parseCommand(fullCommand);
             return c.execute(taskList, ui, storage);
         } catch (MarvinException e) {
             return new CommandResult(ui.getError(e.getMessage()), false);
