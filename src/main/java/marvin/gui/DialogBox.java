@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -80,7 +79,8 @@ public class DialogBox extends HBox {
      */
     private void setErrorStyle() {
         // Error messages: red bubble with lighter red text
-        messageBubble.setStyle("-fx-background-color: #8b1e1e; -fx-background-radius: 12; -fx-padding: 10 12 10 12; -fx-border-color: #ff4444; -fx-border-width: 1; -fx-border-radius: 12;");
+        messageBubble.setStyle("-fx-background-color: #8b1e1e; -fx-background-radius: 12; -fx-padding: 10 12 10 12;"
+                + " -fx-border-color: #ff4444; -fx-border-width: 1; -fx-border-radius: 12;");
         dialog.setStyle("-fx-text-fill: #ffcccc; -fx-font-size: 13px; -fx-line-spacing: 2px;");
     }
 
