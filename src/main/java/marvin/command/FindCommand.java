@@ -16,8 +16,8 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
-        String response = ui.wrapMessage("Here are the matching tasks in your list:\n"
-                + taskList.findTasksContains(snippet).toString());
+        String response = "Here are the matching tasks in your list:\n"
+                + taskList.findTasksContains(snippet).toString();
         return new CommandResult(response);
     }
 }

@@ -20,10 +20,9 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        String response = ui.wrapMessage("Another tedious thing for you to do.\n  adding: "
+        String response = "Another tedious thing for you to do.\n  adding: "
                 + task
-                + "\nYou have " + taskList.numTasks() + " tasks left."
-        );
+                + "\nYou have " + taskList.numTasks() + " tasks left.";
         return new CommandResult(response);
     }
 }
