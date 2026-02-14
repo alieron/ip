@@ -30,8 +30,7 @@ depressed. Talk to him through the command line interface (CLI).
 
 ## Features
 
-> [!TIP]
-> **:information_source: Notes about the command format:**<br>
+> Notes about the command format:**<br>
 >
 > * Words in `UPPER_CASE` are the parameters to be supplied by the user. They can contain spaces without having to be
     enclosed with apostrophes.<br>
@@ -197,7 +196,6 @@ save manually.
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/tasks.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
-> [!WARNING]
 > If your changes to the data file makes its format invalid, Marvin may behave in unexpected ways. Hence, it is
 > recommended to take a backup of the file before editing it.<br>
 > Therefore, edit the data file only if you are confident that you can update it correctly.
