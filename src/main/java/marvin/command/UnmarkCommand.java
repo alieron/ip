@@ -20,9 +20,8 @@ public class UnmarkCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         Task selectedTask = taskList.unmarkTask(taskIdx);
         storage.saveTasks(taskList);
-        String response = ui.wrapMessage("Back to square one...\n  unmarked: "
-                + selectedTask
-        );
+        String response = "Back to square one...\n  unmarked: "
+                + selectedTask;
         return new CommandResult(response);
     }
 }

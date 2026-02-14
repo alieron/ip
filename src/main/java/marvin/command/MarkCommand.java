@@ -20,9 +20,8 @@ public class MarkCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws MarvinException {
         Task selectedTask = taskList.markTask(taskIdx);
         storage.saveTasks(taskList);
-        String response = ui.wrapMessage("Progress, I suppose.\n  marked: "
-                + selectedTask
-        );
+        String response = "Progress, I suppose.\n  marked: "
+                + selectedTask;
         return new CommandResult(response);
     }
 }
