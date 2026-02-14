@@ -30,28 +30,25 @@ depressed. Talk to him through the command line interface (CLI).
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. They can contain spaces without having to be
-  enclosed with apostrophes.<br>
-  e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `--from FROM_DATE --to TO_DATE`, `--to TO_DATE --from FROM_DATE` is also acceptable.
-
-* Parameter flags also have a shortened alternative, see the specifics for the shortened flag.<br>
-  e.g. in `deadline TASK --by BY_DATE` can be shortened to `deadline TASK -b BY_DATE`
-
-* Extraneous parameters for commands that do not take in parameters (such as `list` and `bye`) will be
-  ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
-  as space characters surrounding line-breaks may be omitted when copied over to the application.
-
-</div>
+> [!TIP]
+> **:information_source: Notes about the command format:**<br>
+>
+> * Words in `UPPER_CASE` are the parameters to be supplied by the user. They can contain spaces without having to be
+    enclosed with apostrophes.<br>
+    e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book`.
+>
+> * Parameters can be in any order.<br>
+    e.g. if the command specifies `--from FROM_DATE --to TO_DATE`, `--to TO_DATE --from FROM_DATE` is also acceptable.
+>
+> * Parameter flags also have a shortened alternative, see the specifics for the shortened flag.<br>
+    e.g. in `deadline TASK --by BY_DATE` can be shortened to `deadline TASK -b BY_DATE`
+>
+> * Extraneous parameters for commands that do not take in parameters (such as `list` and `bye`) will be
+    ignored.<br>
+    e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+>
+> * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple
+    lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 ### Adding a Todo Task: `todo`
 
@@ -153,7 +150,8 @@ Example: `delete 1`
 
 Finds tasks whose names contain the given search term.
 
-Format: 
+Format:
+
 ```
 find SEARCH_STRING
 ```
@@ -167,7 +165,8 @@ Example: `find book` returns `read book` and `book club`
 
 Deletes the specified person from the address book.
 
-Format: 
+Format:
+
 ```
 delete INDEX
 ```
@@ -182,7 +181,8 @@ Example: `list` followed by `delete 2` deletes the 2nd person in the address boo
 
 Exits the program.
 
-Format: 
+Format:
+
 ```
 bye
 ```
@@ -197,7 +197,7 @@ save manually.
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/tasks.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Marvin may behave in unexpected ways. Hence, it is recommended to take a backup of the file before editing it.<br>
-Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+> [!WARNING]
+> If your changes to the data file makes its format invalid, Marvin may behave in unexpected ways. Hence, it is
+> recommended to take a backup of the file before editing it.<br>
+> Therefore, edit the data file only if you are confident that you can update it correctly.
