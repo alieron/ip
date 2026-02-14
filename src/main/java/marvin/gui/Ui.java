@@ -6,6 +6,8 @@ package marvin.gui;
 public class Ui {
     /**
      * Prints the welcome message.
+     *
+     * @return The welcome message
      */
     public String getWelcome() {
         String logo = """
@@ -27,6 +29,8 @@ public class Ui {
 
     /**
      * Prints the goodbye message.
+     *
+     * @return The goodbye message
      */
     public String getGoodBye() {
         return "Goodbye.\nThank you for wasting my time.";
@@ -35,7 +39,8 @@ public class Ui {
     /**
      * Prints an error message.
      *
-     * @param message The message
+     * @param message The error message
+     * @return The message pre-appended with "Error: "
      */
     public String getError(String message) {
         return "Error: " + message;
