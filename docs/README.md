@@ -2,27 +2,23 @@
 
 ![product image](Ui.png)
 
-Marvin is your all powerful, all seeing and all knowing android assistant, there's just one little catch, he's really
-depressed. Talk to him through the command line interface (CLI).
+Marvin is your all powerful, all seeing and all knowing android assistant, there's just one little catch, he's really depressed. Talk to him through the command line interface (CLI).
 
 ## Quick Start
 
 1. Ensure you have Java `17` installed in your Computer.
 2. Download the latest `marvin.jar` from the releases page.
-3. Copy the file to the folder you want to use as the _home folder_ for your Marvin, Marvin will create files in this
-   location to save your data.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the following command to run the
-   application:
+3. Copy the file to the folder you want to use as the _home folder_ for your Marvin, Marvin will create files in this location to save your data.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the following command to run the application:
    ```
    java -jar marvin.jar
    ```
-5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
-   the help window.
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
    Some example commands you can try:
 
     * `list` : Lists all tasks.
     * `todo read book` : Adds a todo task "read book" to the task list.
-    * `deadline submit report --by 2024-12-01` : Adds a deadline task "submit report" by 12 January 2024.
+    * `deadline submit report --by 2024-12-01` : Adds a deadline task "submit report" by 1st December 2024.
     * `delete 1` : Deletes the 1st task in the current list.
     * `bye` : Exits the app.
 
@@ -30,24 +26,17 @@ depressed. Talk to him through the command line interface (CLI).
 
 ## Features
 
-> Notes about the command format:**<br>
+> Notes about the command format:<br>
 >
-> * Words in `UPPER_CASE` are the parameters to be supplied by the user. They can contain spaces without having to be
-    enclosed with apostrophes.<br>
-    e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book`.
+> * Words in `UPPER_CASE` are the parameters to be supplied by the user. They can contain spaces without having to be enclosed with apostrophes.<br>e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book`.
 >
-> * Parameters can be in any order.<br>
-    e.g. if the command specifies `--from FROM_DATE --to TO_DATE`, `--to TO_DATE --from FROM_DATE` is also acceptable.
+> * Parameters can be in any order.<br>e.g. if the command specifies `--from FROM_DATE --to TO_DATE`, `--to TO_DATE --from FROM_DATE` is also acceptable.
 >
-> * Parameter flags also have a shortened alternative, see the specifics for the shortened flag.<br>
-    e.g. in `deadline TASK --by BY_DATE` can be shortened to `deadline TASK -b BY_DATE`
+> * Parameter flags also have a shortened alternative, see the specifics for the shortened flag.<br>e.g. in `deadline TASK --by BY_DATE` can be shortened to `deadline TASK -b BY_DATE`
 >
-> * Extraneous parameters for commands that do not take in parameters (such as `list` and `bye`) will be
-    ignored.<br>
-    e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+> * Extraneous parameters for commands that do not take in parameters (such as `list` and `bye`) will be ignored.<br>e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 >
-> * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple
-    lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+> * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 ### Adding a Todo Task: `todo`
 
@@ -188,13 +177,11 @@ bye
 
 ### Saving your data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/tasks.json`. Advanced users are
-welcome to update data directly by editing that data file.
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/tasks.json`. Advanced users are welcome to update data directly by editing that data file.
 
 > If your changes to the data file makes its format invalid, Marvin may behave in unexpected ways. Hence, it is
 > recommended to take a backup of the file before editing it.<br>
