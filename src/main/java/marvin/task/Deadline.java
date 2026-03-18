@@ -2,7 +2,9 @@ package marvin.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
+import marvin.MarvinException;
 import marvin.Parser;
 
 /**
@@ -20,6 +22,27 @@ public class Deadline extends Task {
     public Deadline(String desc, String by) {
         super(desc);
         this.by = Parser.parseDate(by);
+    }
+
+    /**
+     * Creates a new Deadline from command arguments.
+     *
+     * @param argString the main argument and description of the deadline
+     * @param otherArgs the other args
+     * @throws MarvinException if the command is invalid
+     */
+    public static Deadline fromCommand(String argString, Map<String, String> otherArgs) throws MarvinException {
+        if (argString.isBlank()) {
+            throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
+        }
+
+        String by = Parser.getFlag(otherArgs, "-b", "--by");
+
+        if (by == null) {
+            throw new MarvinException("Deadlines tend to require a deadline. Try using -b or --by.");
+        }
+
+        return new Deadline(argString, by);
     }
 
     /**

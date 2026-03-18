@@ -1,11 +1,27 @@
 package marvin.task;
 
+import marvin.MarvinException;
+
 /**
  * The Todo task.
  */
 public class Todo extends Task {
     public Todo(String desc) {
         super(desc);
+    }
+
+    /**
+     * Creates a new Todo from command arguments.
+     *
+     * @param argString The main argument and description of the deadline
+     * @throws MarvinException If the command is invalid
+     */
+    public static Todo fromCommand(String argString) throws MarvinException {
+        if (argString.isBlank()) {
+            throw new MarvinException("A todo without a description is rather pointless.");
+        }
+
+        return new Todo(argString);
     }
 
     /**

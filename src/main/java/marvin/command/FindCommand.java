@@ -1,5 +1,6 @@
 package marvin.command;
 
+import marvin.MarvinException;
 import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
@@ -10,8 +11,17 @@ import marvin.gui.Ui;
 public class FindCommand extends Command {
     private final String snippet;
 
-    public FindCommand(String snippet) {
-        this.snippet = snippet;
+    /**
+     * Instantiates a new Find command.
+     *
+     * @param argString The main argument
+     * @throws MarvinException If no other arguments are provided
+     */
+    public FindCommand(String argString) throws MarvinException {
+        if (argString.isBlank()) {
+            throw new MarvinException("It is pointless to search for nothing.");
+        }
+        this.snippet = argString;
     }
 
     @Override
