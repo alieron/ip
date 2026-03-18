@@ -130,4 +130,19 @@ public class Parser {
 
         throw new IllegalArgumentException("Unrecognized date/time format: " + token);
     }
+
+    /**
+     * Parse positive non zero integer.
+     *
+     * @param num the string to be parsed into an integer
+     * @return the integer
+     * @throws NumberFormatException the illegal argument exception
+     */
+    public static int parsePositiveNonZeroInt(String num) throws NumberFormatException {
+        int value = Integer.parseInt(num);
+        if (value <= 0 || num.startsWith("+")) {
+            throw new NumberFormatException();
+        }
+        return value;
+    }
 }

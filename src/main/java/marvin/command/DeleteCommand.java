@@ -1,6 +1,7 @@
 package marvin.command;
 
 import marvin.MarvinException;
+import marvin.Parser;
 import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
@@ -12,8 +13,18 @@ import marvin.task.Task;
 public class DeleteCommand extends Command {
     private final int taskIdx;
 
-    public DeleteCommand(int taskIdx) {
-        this.taskIdx = taskIdx;
+    /**
+     * Instantiates a new Delete command.
+     *
+     * @param argString The string of arguments
+     * @throws MarvinException if the argument is not a valid integer
+     */
+    public DeleteCommand(String argString) throws MarvinException {
+        try {
+            this.taskIdx = Parser.parsePositiveNonZeroInt(argString);
+        } catch (NumberFormatException e) {
+            throw new MarvinException("You need to tell me which one to delete.");
+        }
     }
 
     @Override

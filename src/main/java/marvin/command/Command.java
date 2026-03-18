@@ -8,9 +8,6 @@ import marvin.Parser;
 import marvin.Storage;
 import marvin.TaskList;
 import marvin.gui.Ui;
-import marvin.task.Deadline;
-import marvin.task.Event;
-import marvin.task.Todo;
 
 /**
  * Base command: implementors must provide execute.
@@ -27,7 +24,7 @@ public abstract class Command {
     /**
      * The enum for the types of commands the user can invoke.
      */
-    private enum CommandType {
+    protected enum CommandType {
         LIST("list"),
         MARK("mark"),
         UNMARK("unmark"),
@@ -91,74 +88,22 @@ public abstract class Command {
             // by this point, the command is at least known
         case EXIT:
             return new ExitCommand();
-
         case LIST:
             return new ListCommand();
-
         case MARK:
-            try {
-                return new MarkCommand(Integer.parseInt(argString));
-            } catch (NumberFormatException e) {
-                throw new MarvinException("You need to tell me which one to mark.");
-            }
-
+            return new MarkCommand(argString);
         case UNMARK:
-            try {
-                return new UnmarkCommand(Integer.parseInt(argString));
-            } catch (NumberFormatException e) {
-                throw new MarvinException("You need to tell me which one to unmark.");
-            }
-
+            return new UnmarkCommand(argString);
         case DELETE:
-            try {
-                return new DeleteCommand(Integer.parseInt(argString));
-            } catch (NumberFormatException e) {
-                throw new MarvinException("You need to tell me which one to delete.");
-            }
-
+            return new DeleteCommand(argString);
         case FIND:
-            if (argString.isBlank()) {
-                throw new MarvinException("It is pointless to search for nothing.");
-            }
             return new FindCommand(argString);
-
         case TODO:
-            if (argString.isBlank()) {
-                throw new MarvinException("A todo without a description is rather pointless.");
-            }
-
-            return new AddTaskCommand(new Todo(argString));
-
+            // no break
         case DEADLINE:
-            if (argString.isBlank()) {
-                throw new MarvinException("A deadline for nothing in particular is deeply confusing.");
-            }
-
-            String by = Parser.getFlag(otherArgs, "-b", "--by");
-
-            if (by == null) {
-                throw new MarvinException("Deadlines tend to require a deadline. Try using -b or --by.");
-            }
-
-            return new AddTaskCommand(new Deadline(argString, by));
-
+            // no break
         case EVENT:
-            if (argString.isEmpty()) {
-                throw new MarvinException("An event with missing details is... incomplete.");
-            }
-
-            String from = Parser.getFlag(otherArgs, "-f", "--from");
-            if (from == null) {
-                throw new MarvinException("An event should probably start at some point. Try using -f or --from.");
-            }
-
-            String to = Parser.getFlag(otherArgs, "-t", "--to");
-            if (to == null) {
-                throw new MarvinException("Events usually end. Try specifying -t or --to.");
-            }
-
-            return new AddTaskCommand(new Event(argString, from, to));
-
+            return new AddTaskCommand(type, argString, otherArgs);
         default:
             // Unknown commands should already be handled by first case
             assert false : "Unknown command not handled properly"; // this line should not be executed
